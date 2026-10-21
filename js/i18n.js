@@ -49,10 +49,10 @@ window.I18N = {
     openMap: "Открыть на карте",
 
     wishesTitle: "Пожелания",
-    flowersTitle: "О цветах",
-    flowersText: "Сразу после праздника мы уезжаем в путешествие, и букеты не успеют нас порадовать. Вместо цветов принесите бутылку любимого вина — откроем её на годовщину.",
+    presenceTitle: "Ваше присутствие",
+    presenceText: "Для нас самое ценное — провести этот день рядом с близкими. Ваши улыбки, тёплые слова и хорошее настроение сделают праздник по-настоящему особенным.",
     giftsTitle: "О подарках",
-    giftsText: "Главный подарок для нас — Ваше присутствие. Если захотите сделать больше, будем благодарны за вклад в бюджет нашей молодой семьи.",
+    giftsText: "Не ломайте голову над подарком: если захотите нас порадовать, будем благодарны за вклад в бюджет нашей молодой семьи.",
 
     rsvpTitle: "Анкета гостя",
     rsvpIntro: "Пожалуйста, ответьте до {deadline} — так нам будет проще всё подготовить.",
@@ -80,7 +80,7 @@ window.I18N = {
     demoNote: "Демо-режим: ответ никуда не отправлен. Укажите rsvpEndpoint в js/config.js.",
 
     contactsTitle: "Контакты",
-    contactsText: "Если остались вопросы, напишите нам или нашему организатору.",
+    contactsText: "Если остались вопросы — звоните, с радостью ответим.",
     footer: "Ждём Вас!",
   },
 
@@ -126,10 +126,10 @@ window.I18N = {
     openMap: "Xaritada ochish",
 
     wishesTitle: "Istaklarimiz",
-    flowersTitle: "Gullar haqida",
-    flowersText: "Toʻydan soʻng darhol sayohatga joʻnaymiz va guldastalar bizni quvontirishga ulgurmaydi. Gul oʻrniga sevimli vinongizdan bir shisha olib keling — uni toʻy yilligimizda ochamiz.",
+    presenceTitle: "Sizning ishtirokingiz",
+    presenceText: "Biz uchun eng qadrlisi — bu kunni yaqinlarimiz davrasida oʻtkazish. Tabassumingiz, iliq soʻzlaringiz va yaxshi kayfiyatingiz bayramimizni chinakam unutilmas qiladi.",
     giftsTitle: "Sovgʻalar haqida",
-    giftsText: "Biz uchun eng katta sovgʻa — Sizning ishtirokingiz. Agar yana biror narsa qilmoqchi boʻlsangiz, yosh oilamiz byudjetiga qoʻshgan hissangiz uchun minnatdor boʻlamiz.",
+    giftsText: "Sovgʻa tanlashda bosh qotirmang: agar bizni xursand qilmoqchi boʻlsangiz, yosh oilamiz byudjetiga qoʻshgan hissangiz uchun minnatdor boʻlamiz.",
 
     rsvpTitle: "Mehmon anketasi",
     rsvpIntro: "Iltimos, {deadline}gacha javob bering — shunda hammasini tayyorlash bizga osonroq boʻladi.",
@@ -157,7 +157,7 @@ window.I18N = {
     demoNote: "Demo rejim: javob hech qayerga yuborilmadi. js/config.js faylida rsvpEndpoint ni koʻrsating.",
 
     contactsTitle: "Aloqa",
-    contactsText: "Savollaringiz boʻlsa, bizga yoki tashkilotchimizga yozing.",
+    contactsText: "Savollaringiz boʻlsa, qoʻngʻiroq qiling — mamnuniyat bilan javob beramiz.",
     footer: "Sizni kutamiz!",
   },
 
@@ -203,10 +203,10 @@ window.I18N = {
     openMap: "Картадан ашу",
 
     wishesTitle: "Тілектеріміз",
-    flowersTitle: "Гүлдер туралы",
-    flowersText: "Тойдан кейін бірден саяхатқа аттанамыз, гүл шоқтары бізді қуантып үлгермейді. Гүлдің орнына өзіңіз ұнататын шараптан бір бөтелке әкеліңіз — оны үйленген күніміздің жылдығында ашамыз.",
+    presenceTitle: "Сіздің қатысуыңыз",
+    presenceText: "Біз үшін ең қымбаты — осы күнді жақындарымыздың ортасында өткізу. Сіздің күлкіңіз, жылы лебізіңіз бен көтеріңкі көңіл-күйіңіз мерекемізді шынымен ерекше етеді.",
     giftsTitle: "Сыйлықтар туралы",
-    giftsText: "Біз үшін ең басты сыйлық — Сіздің қатысуыңыз. Егер одан да көп нәрсе жасағыңыз келсе, жас отбасымыздың бюджетіне қосқан үлесіңіз үшін алғыс айтамыз.",
+    giftsText: "Сыйлық таңдауға бас қатырмаңыз: егер бізді қуантқыңыз келсе, жас отбасымыздың бюджетіне қосқан үлесіңіз үшін алғыс айтамыз.",
 
     rsvpTitle: "Қонақ сауалнамасы",
     rsvpIntro: "Өтінеміз, {deadline} дейін жауап беріңіз — осылайша бәрін дайындау бізге оңайырақ болады.",
@@ -234,7 +234,7 @@ window.I18N = {
     demoNote: "Демо режим: жауап ешқайда жіберілген жоқ. js/config.js файлында rsvpEndpoint көрсетіңіз.",
 
     contactsTitle: "Байланыс",
-    contactsText: "Сұрақтарыңыз болса, бізге немесе ұйымдастырушымызға жазыңыз.",
+    contactsText: "Сұрақтарыңыз болса, қоңырау шалыңыз — қуана жауап береміз.",
     footer: "Сізді күтеміз!",
   },
 };

@@ -37,7 +37,7 @@ window.WEDDING = {
   },
 
   // Фон страницы следует за временем: до 17:00 день, с 17:00 золотой час,
-  // с 20:00 закат, с 22:00 вечер. sparkles: true — на этом пункте вспыхивают бенгальские огни.
+  // с 18:30 закат, с 21:00 вечер. sparkles: true — на этом пункте вспыхивают бенгальские огни.
   schedule: [
     {
       time: "17:30",
@@ -64,11 +64,6 @@ window.WEDDING = {
     },
     {
       time: "21:30",
-      title: { ru: "Свадебный торт", uz: "Toʻy torti", kk: "Той торты" },
-      text: { ru: "Торт и сладкий стол", uz: "Tort va shirinliklar", kk: "Торт және тәтті дастархан" },
-    },
-    {
-      time: "22:30",
       title: { ru: "Завершение вечера", uz: "Kecha yakuni", kk: "Кештің соңы" },
       text: { ru: "Последний танец и проводы", uz: "Soʻnggi raqs va kuzatuv", kk: "Соңғы би және шығарып салу" },
     },
@@ -82,10 +77,9 @@ window.WEDDING = {
 
   contacts: [
     {
-      role: { ru: "Организатор", uz: "Tashkilotchi", kk: "Ұйымдастырушы" },
-      name: { ru: "Имя", uz: "Ism", kk: "Аты" },
-      phone: "+998 90 000-00-00",
-      telegram: "username",
+      role: { ru: "Жених и организатор", uz: "Kuyov va tashkilotchi", kk: "Күйеу жігіт және ұйымдастырушы" },
+      name: { ru: "Хожиакбар", uz: "Xojiakbar", kk: "Хожиакбар" },
+      phone: "+998 90 168-44-94",
     },
   ],
 };

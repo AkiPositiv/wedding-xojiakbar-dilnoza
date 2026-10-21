@@ -123,7 +123,7 @@
 
   function buildLangSwitch() {
     const nav = $("#lang");
-    LANGS.forEach((code) => {
+    ["uz", "kk", "ru"].forEach((code) => {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "lang__btn";
@@ -434,8 +434,8 @@
   function phaseOf(time) {
     const [h, m = 0] = time.split(":").map(Number);
     const hours = h + m / 60;
-    if (hours >= 22) return "night";
-    if (hours >= 20) return "sunset";
+    if (hours >= 21) return "night";
+    if (hours >= 18.5) return "sunset";
     if (hours >= 17) return "golden";
     return "day";
   }
@@ -611,41 +611,60 @@
         this.audio.currentTime = 0;
         this.audio.play().catch(() => {});
       });
-      // Кнопку показываем, только когда файл действительно загрузился.
-      this.audio.addEventListener("loadedmetadata", () => (this.btn.hidden = false));
       this.audio.addEventListener("error", () => {
         this.btn.hidden = true;
         this.audio = null;
       });
-      this.btn.addEventListener("click", () => (this.audio && !this.audio.paused ? this.pause(true) : this.play()));
+      this.btn.hidden = false;
+      this.btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (this.wanted) this.pause();
+        else this.play();
+      });
+
+      // Браузеры не дают включать звук без действия гостя. Поэтому пробуем сразу,
+      // а если не вышло — включаем при первом же касании, нажатии клавиши или клике.
+      this.wanted = true;
+      this.setState(true);
+      this.tryPlay();
+      const unlock = (e) => {
+        if (e.target.closest?.("#music")) return;
+        if (this.wanted && this.audio?.paused) this.tryPlay();
+      };
+      ["pointerdown", "touchend", "keydown", "click"].forEach((type) =>
+        document.addEventListener(type, unlock, { capture: true, passive: true })
+      );
 
       // Ставим на паузу, когда вкладка скрыта, и возвращаем звук при возврате.
       document.addEventListener("visibilitychange", () => {
         if (!this.audio) return;
         if (document.hidden) this.audio.pause();
-        else if (this.wanted) this.play();
+        else if (this.wanted) this.tryPlay();
       });
     },
 
-    play() {
-      if (!this.audio) return;
-      this.wanted = true;
-      this.audio.volume = 0;
-      this.audio
+    tryPlay() {
+      const audio = this.audio;
+      if (!audio || !audio.paused) return;
+      audio.volume = 0;
+      audio
         .play()
-        .then(() => {
-          this.btn.hidden = false;
-          this.setState(true);
-          this.fade(C.musicVolume ?? 0.6, 2000);
-        })
-        .catch(() => this.setState(false));
+        .then(() => this.fade(C.musicVolume ?? 0.6, 2000))
+        .catch(() => {
+          /* ждём следующего касания */
+        });
     },
 
-    pause(byUser) {
-      if (!this.audio) return;
-      if (byUser) this.wanted = false;
-      this.audio.pause();
+    play() {
+      this.wanted = true;
+      this.setState(true);
+      this.tryPlay();
+    },
+
+    pause() {
+      this.wanted = false;
       this.setState(false);
+      this.audio?.pause();
     },
 
     fade(target, ms) {
@@ -661,13 +680,14 @@
     },
 
     isPlaying() {
-      return Boolean(this.audio && !this.audio.paused);
+      return this.wanted;
     },
 
-    setState(playing) {
-      this.btn.classList.toggle("is-playing", playing);
-      this.btn.setAttribute("aria-pressed", String(playing));
-      this.btn.setAttribute("aria-label", t(playing ? "musicOff" : "musicOn"));
+    // Значок показывает намерение гостя: пока трек догружается, он уже «включён».
+    setState(on) {
+      this.btn.classList.toggle("is-playing", on);
+      this.btn.setAttribute("aria-pressed", String(on));
+      this.btn.setAttribute("aria-label", t(on ? "musicOff" : "musicOn"));
     },
   };
 
@@ -864,7 +884,7 @@
       if (opened) return;
       opened = true;
       stopTilt();
-      music.play();
+      if (music.wanted) music.tryPlay();
       vibrate([12, 40, 18]);
       intro.classList.add("is-opening");
 

@@ -288,7 +288,7 @@ a { color: inherit; }
   position: fixed;
   right: max(1rem, env(safe-area-inset-right));
   bottom: max(1rem, env(safe-area-inset-bottom));
-  z-index: 40;
+  z-index: 55;
   display: grid;
   place-items: center;
   width: 3.2rem;
