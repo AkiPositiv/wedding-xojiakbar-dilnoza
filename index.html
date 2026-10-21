@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Хожиакбар и Дилноза — приглашение на свадьбу</title>
+  <meta name="description" content="Хожиакбар и Дилноза приглашают Вас на свадьбу 26 ноября 2026">
+  <meta name="theme-color" content="#EEF0E8">
+  <meta property="og:title" content="Хожиакбар и Дилноза — приглашение на свадьбу">
+  <meta property="og:description" content="26 ноября 2026, Нурафшон. Xojiakbar va Dilnoza — toʻyga taklifnoma">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Commissioner:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-locked">
+
+  <!-- Переключатель языка -->
+  <nav class="lang" id="lang" data-i18n-aria="langSwitch"></nav>
+
+  <!-- Конверт -->
+  <div class="intro" id="intro">
+    <div class="envelope" id="envelope">
+      <div class="env-back"></div>
+      <div class="env-letter">
+        <p class="env-letter__small" data-i18n="envSmall"></p>
+        <p class="env-letter__names"><span data-bind="groom"></span><br><span class="amp">&amp;</span><br><span data-bind="bride"></span></p>
+      </div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <div class="env-sheen"></div>
+      <button class="seal" id="seal" type="button" data-i18n-aria="sealOpen">
+        <span class="seal__half seal__half--l"><span class="seal__wax"></span><span class="seal__mono" data-bind="initials"></span></span>
+        <span class="seal__half seal__half--r"><span class="seal__wax"></span><span class="seal__mono" data-bind="initials"></span></span>
+      </button>
+    </div>
+    <p class="intro__hint" data-i18n="hint"></p>
+  </div>
+
+  <canvas class="petals" id="petals" aria-hidden="true"></canvas>
+  <canvas class="sparks" id="sparks" aria-hidden="true"></canvas>
+
+  <!-- Звук: динамик со звуковыми волнами или перечёркнутый -->
+  <button class="music" id="music" type="button" aria-pressed="false" hidden>
+    <svg class="music__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path class="music__speaker" d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+      <path class="music__wave music__wave--1" d="M15.2 9.2a4 4 0 0 1 0 5.6"/>
+      <path class="music__wave music__wave--2" d="M17.8 6.6a7.6 7.6 0 0 1 0 10.8"/>
+      <path class="music__mute" d="M15.5 9.5l5 5m0-5l-5 5"/>
+    </svg>
+  </button>
+
+  <main>
+    <!-- Имена -->
+    <header class="hero" id="hero">
+      <div class="hero__wreath ink" id="wreath" aria-hidden="true"></div>
+      <div class="hero__text">
+        <p class="hero__lead" data-i18n="heroLead"></p>
+        <h1 class="hero__names">
+          <span class="name name--1" data-bind="groom"></span>
+          <span class="amp">&amp;</span>
+          <span class="name name--2" data-bind="bride"></span>
+        </h1>
+        <p class="hero__date" data-bind="dateLong"></p>
+        <p class="hero__city" data-bind="city"></p>
+      </div>
+      <a class="hero__scroll" href="#invite" data-i18n-aria="scrollMore"><span></span></a>
+    </header>
+
+    <!-- Обращение -->
+    <section class="section" id="invite">
+      <div class="sprig ink" aria-hidden="true"></div>
+      <h2 class="section__title" id="greeting"></h2>
+      <p class="prose reveal" data-i18n="invite1"></p>
+      <p class="prose reveal" data-i18n="invite2"></p>
+      <p class="signature reveal" data-i18n="signature"></p>
+    </section>
+
+    <!-- Когда -->
+    <section class="section" id="when">
+      <div class="sprig ink" aria-hidden="true"></div>
+      <h2 class="section__title" data-i18n="whenTitle"></h2>
+      <p class="prose reveal" data-i18n="whenLine"></p>
+
+      <div class="calendar reveal" id="calendar">
+        <p class="calendar__month" data-bind="monthYear"></p>
+        <div class="calendar__grid" id="calendarGrid"></div>
+      </div>
+
+      <div class="countdown reveal" id="countdown">
+        <p class="countdown__label" id="countdownLabel" data-i18n="countdownLabel"></p>
+        <div class="countdown__row">
+          <div class="countdown__cell"><span class="countdown__num" data-unit="d"></span><span class="countdown__unit" data-unit-label="d"></span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-unit="h"></span><span class="countdown__unit" data-unit-label="h"></span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-unit="m"></span><span class="countdown__unit" data-unit-label="m"></span></div>
+          <div class="countdown__cell"><span class="countdown__num" data-unit="s"></span><span class="countdown__unit" data-unit-label="s"></span></div>
+        </div>
+      </div>
+
+      <a class="btn btn--ghost reveal" id="addToCalendar" href="#" target="_blank" rel="noopener" data-i18n="addToCalendar"></a>
+    </section>
+
+    <!-- Программа -->
+    <section class="section" id="schedule">
+      <div class="sprig ink" aria-hidden="true"></div>
+      <h2 class="section__title" data-i18n="scheduleTitle"></h2>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <!-- Место -->
+    <section class="section" id="place">
+      <div class="sprig ink" aria-hidden="true"></div>
+      <h2 class="section__title" data-i18n="placeTitle"></h2>
+      <p class="venue__name reveal" data-bind="venue.name"></p>
+      <p class="prose reveal" data-bind="venue.address"></p>
+      <a class="btn reveal" id="mapLink" href="#" target="_blank" rel="noopener" data-i18n="openMap"></a>
+    </section>
+
+    <!-- Пожелания -->
+    <section class="section" id="wishes">
+      <div class="sprig ink" aria-hidden="true"></div>
+      <h2 class="section__title" data-i18n="wishesTitle"></h2>
+      <div class="wish reveal">
+        <h3 class="wish__title" data-i18n="flowersTitle"></h3>
+        <p class="prose" data-i18n="flowersText"></p>
+      </div>
+      <div class="wish reveal">
+        <h3 class="wish__title" data-i18n="giftsTitle"></h3>
+        <p class="prose" data-i18n="giftsText"></p>
+      </div>
+    </section>
+
+    <!-- Анкета -->
+    <section class="section" id="rsvp">
+      <div class="sprig ink" aria-hidden="true"></div>
+      <h2 class="section__title" data-i18n="rsvpTitle"></h2>
+      <p class="prose reveal" data-i18n="rsvpIntro"></p>
+
+      <div class="rsvp-stage reveal" id="rsvpStage">
+        <!-- value у вариантов всегда на русском: так ответы в таблице читаются одинаково на любом языке -->
+        <form class="form" id="rsvpForm" novalidate>
+          <label class="field">
+            <span class="field__label" data-i18n="fieldName"></span>
+            <input class="field__input" type="text" name="name" autocomplete="name" required>
+            <span class="field__error" id="nameError" data-i18n="nameError" hidden></span>
+          </label>
+
+          <fieldset class="field">
+            <legend class="field__label" data-i18n="fieldAttend"></legend>
+            <div class="choice-row">
+              <label class="choice"><input type="radio" name="attend" value="Приду" checked><span data-i18n="attendYes"></span></label>
+              <label class="choice"><input type="radio" name="attend" value="Не смогу"><span data-i18n="attendNo"></span></label>
+            </div>
+          </fieldset>
+
+          <div class="form__extra" id="formExtra">
+            <label class="field">
+              <span class="field__label" data-i18n="fieldGuest"></span>
+              <input class="field__input" type="text" name="guest" data-i18n-placeholder="guestPlaceholder">
+            </label>
+
+            <fieldset class="field">
+              <legend class="field__label" data-i18n="fieldDrinks"></legend>
+              <div class="choice-grid">
+                <label class="choice"><input type="checkbox" name="drinks" value="Красное вино"><span data-i18n="drinkRed"></span></label>
+                <label class="choice"><input type="checkbox" name="drinks" value="Белое вино"><span data-i18n="drinkWhite"></span></label>
+                <label class="choice"><input type="checkbox" name="drinks" value="Шампанское"><span data-i18n="drinkChampagne"></span></label>
+                <label class="choice"><input type="checkbox" name="drinks" value="Крепкое"><span data-i18n="drinkStrong"></span></label>
+                <label class="choice"><input type="checkbox" name="drinks" value="Без алкоголя"><span data-i18n="drinkNone"></span></label>
+              </div>
+            </fieldset>
+
+            <label class="field">
+              <span class="field__label" data-i18n="fieldFood"></span>
+              <input class="field__input" type="text" name="food" data-i18n-placeholder="foodPlaceholder">
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="field__label" data-i18n="fieldComment"></span>
+            <textarea class="field__input" name="comment" rows="3"></textarea>
+          </label>
+
+          <button class="btn" type="submit" id="rsvpSubmit" data-i18n="submit"></button>
+          <p class="form__status" id="rsvpStatus" role="status"></p>
+        </form>
+
+        <div class="mail" id="mail" aria-hidden="true" hidden>
+          <div class="mail__back"></div>
+          <div class="mail__front"></div>
+          <div class="mail__flap"></div>
+          <span class="mail__seal"></span>
+        </div>
+
+        <div class="thanks" id="thanks" role="status" hidden>
+          <p class="thanks__text" id="thanksText"></p>
+          <p class="thanks__note" id="thanksNote"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="section" id="contacts">
+      <div class="sprig ink" aria-hidden="true"></div>
+      <h2 class="section__title" data-i18n="contactsTitle"></h2>
+      <p class="prose reveal" data-i18n="contactsText"></p>
+      <ul class="contacts reveal" id="contactList"></ul>
+    </section>
+
+    <footer class="footer">
+      <p class="footer__text" data-i18n="footer"></p>
+      <p class="footer__mono" data-bind="initials"></p>
+    </footer>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
