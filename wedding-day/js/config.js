@@ -76,13 +76,6 @@ window.WEDDING = {
   // URL веб-приложения Google Apps Script (см. google-apps-script/НАСТРОЙКА.md). Пусто — анкета в демо-режиме.
   rsvpEndpoint: "https://script.google.com/macros/s/AKfycby9GkCSEzWhNhQNoj922mevd09tSYK-N0wl-kY2nA-wgQls6jBHkhHgtyLeymZrdMlSqg/exec",
 
-  // Карты для подарков. owner: groom | bride — от него зависят подпись и цвет карты.
-  // Карта без номера на сайте не показывается.
-  cards: [
-    { owner: "groom", type: "HUMO", number: "9860 0101 4068 8804", holder: "XOJIAKBAR" },
-    { owner: "bride", type: "HUMO", number: "9860 0101 4016 7452", holder: "DILNOZA" },
-  ],
-
   contacts: [
     {
       role: { ru: "Жених и организатор", uz: "Kuyov va tashkilotchi", kk: "Күйеу жігіт және ұйымдастырушы" },

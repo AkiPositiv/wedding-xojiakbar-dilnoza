@@ -105,7 +105,6 @@
     });
 
     renderContacts();
-    renderCards();
     buildCalendar();
     $("#addToCalendar").href = googleCalendarUrl(v);
     $$(".lang__btn").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
@@ -173,154 +172,6 @@
       if (c.telegram) links.append(link(`https://t.me/${c.telegram}`, "Telegram"));
       contacts.append(li);
     });
-  }
-
-  // Карты для подарков в виде настоящих банковских карт. Нажатие на номер копирует его.
-  function renderCards() {
-    const list = $("#cards");
-    list.replaceChildren();
-    (C.cards || [])
-      .filter((c) => c.number && c.number.trim())
-      .forEach((card) => {
-        const owner = t(card.owner === "bride" ? "cardBride" : "cardGroom");
-        const li = document.createElement("li");
-        li.className = `bank bank--${card.owner === "bride" ? "bride" : "groom"}`;
-        li.innerHTML =
-          `<span class="bank__owner"></span><span class="bank__brand"></span>` +
-          `<span class="bank__chip" aria-hidden="true"></span>` +
-          `<button class="bank__number" type="button"></button>` +
-          `<span class="bank__holder"></span>` +
-          `<span class="bank__toast" aria-live="polite"></span>`;
-        $(".bank__owner", li).textContent = owner;
-        $(".bank__brand", li).textContent = card.type;
-        $(".bank__holder", li).textContent = card.holder || "";
-        const btn = $(".bank__number", li);
-        btn.textContent = card.number.replace(/\D/g, "").replace(/(\d{4})(?=\d)/g, "$1 ");
-        btn.setAttribute("aria-label", t("copyAria", { card: owner }));
-        btn.addEventListener("click", () => copyText(card.number.replace(/\D/g, ""), li));
-        list.append(li);
-      });
-    list.hidden = !list.children.length;
-
-    // точки под картами: показывают, сколько карт, и переключают их
-    const dots = $("#cardDots");
-    dots.replaceChildren();
-    if (list.children.length > 1) {
-      [...list.children].forEach((card) => {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "wallet__dot";
-        dot.setAttribute("aria-label", $(".bank__owner", card).textContent);
-        dot.addEventListener("click", () => card.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" }));
-        dots.append(dot);
-      });
-    }
-    walletUpdate?.();
-  }
-
-  /* ---------- Кошелёк: карты листаются свайпом ---------- */
-
-  let walletUpdate = null;
-
-  // Активная карта по центру, соседние повёрнуты в 3D и приглушены.
-  function setupWallet() {
-    const list = $("#cards");
-    let queued = false;
-
-    function update() {
-      queued = false;
-      const box = list.getBoundingClientRect();
-      const center = box.left + box.width / 2;
-      let active = 0;
-      let best = Infinity;
-      [...list.children].forEach((card, i) => {
-        const r = card.getBoundingClientRect();
-        const d = clamp((r.left + r.width / 2 - center) / r.width, -1.5, 1.5);
-        const k = Math.min(Math.abs(d), 1);
-        card.style.setProperty("--ry", `${(-d * 28).toFixed(1)}deg`);
-        card.style.setProperty("--sc", (1 - k * 0.14).toFixed(3));
-        card.style.setProperty("--op", (1 - k * 0.45).toFixed(3));
-        if (Math.abs(d) < best) {
-          best = Math.abs(d);
-          active = i;
-        }
-      });
-      $$(".wallet__dot").forEach((dot, i) => dot.setAttribute("aria-current", String(i === active)));
-    }
-
-    walletUpdate = () => {
-      if (!queued) {
-        queued = true;
-        requestAnimationFrame(update);
-      }
-    };
-    list.addEventListener("scroll", walletUpdate, { passive: true });
-    window.addEventListener("resize", walletUpdate);
-
-    // Мышью карты можно перетаскивать; после перетаскивания клик по номеру не копирует.
-    let drag = null;
-    list.addEventListener("pointerdown", (e) => {
-      if (e.pointerType !== "mouse") return;
-      drag = { x: e.clientX, left: list.scrollLeft, moved: false };
-      list.style.scrollSnapType = "none";
-    });
-    window.addEventListener("pointermove", (e) => {
-      if (!drag) return;
-      const dx = e.clientX - drag.x;
-      if (Math.abs(dx) > 5) drag.moved = true;
-      list.scrollLeft = drag.left - dx;
-    });
-    window.addEventListener("pointerup", () => {
-      if (!drag) return;
-      const moved = drag.moved;
-      drag = null;
-      list.style.scrollSnapType = "";
-      if (!moved) return;
-      const nearest = [...list.children].sort(
-        (a, b) => Math.abs(parseFloat(a.style.getPropertyValue("--ry"))) - Math.abs(parseFloat(b.style.getPropertyValue("--ry")))
-      )[0];
-      nearest?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-      list.addEventListener("click", (ev) => ev.stopPropagation(), { capture: true, once: true });
-    });
-
-    // Подсказка свайпа: при первом появлении карты чуть сдвигаются и возвращаются.
-    new IntersectionObserver(
-      ([e], io) => {
-        if (!e.isIntersecting) return;
-        io.disconnect();
-        if (reduceMotion || list.children.length < 2) return;
-        setTimeout(() => {
-          list.scrollBy({ left: 80, behavior: "smooth" });
-          setTimeout(() => list.scrollTo({ left: 0, behavior: "smooth" }), 700);
-        }, 900);
-      },
-      { threshold: 0.6 }
-    ).observe(list);
-
-    walletUpdate();
-  }
-
-  async function copyText(text, card) {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      // запасной путь для старых браузеров и страниц без https
-      const area = document.createElement("textarea");
-      area.value = text;
-      area.setAttribute("readonly", "");
-      area.style.position = "fixed";
-      area.style.opacity = "0";
-      document.body.append(area);
-      area.select();
-      document.execCommand("copy");
-      area.remove();
-    }
-    const toast = $(".bank__toast", card);
-    toast.textContent = `${t("copied")} ✓`;
-    card.classList.add("is-copied");
-    vibrate(15);
-    clearTimeout(card._timer);
-    card._timer = setTimeout(() => card.classList.remove("is-copied"), 1800);
   }
 
   function link(href, text) {
@@ -1133,7 +984,6 @@
   buildFeltBorders();
   buildSuzani();
   setupSteppe();
-  setupWallet();
   render();
   startCountdown();
   observeReveals();
