@@ -33,7 +33,8 @@ window.WEDDING = {
       uz: "Toshkent viloyati, Nurafshon shahri",
       kk: "Ташкент облысы, Нурафшон қаласы",
     },
-    mapUrl: "https://yandex.uz/maps/?text=" + encodeURIComponent("Дийора Нурафшон"),
+    // Точка на Google Картах: 41.0157339, 69.3597125
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=41.0157339,69.3597125",
   },
 
   // Фон страницы следует за временем: до 17:00 день, с 17:00 золотой час,
