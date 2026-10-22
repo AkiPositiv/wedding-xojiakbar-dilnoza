@@ -713,20 +713,43 @@ a { color: inherit; }
 }
 
 /* Карты для подарков — как настоящие банковские: чип, тиснёный номер, блик по пластику */
-.cards {
-  display: grid;
-  justify-items: center;
-  gap: 1.1rem;
-  width: 100%;
-  margin: 1.2rem auto 0;
-  padding: 0;
-  list-style: none;
+/* кошелёк на всю ширину экрана: карты листаются свайпом и прилипают по центру */
+.wallet {
+  width: 100vw;
+  max-width: none;
+  margin: 1rem calc(50% - 50vw) 0;
 }
 
-.cards[hidden],
-.cards__hint[hidden] { display: none; }
+.cards {
+  display: flex;
+  gap: .5rem;
+  margin: 0;
+  padding: 1.4rem calc(50% - min(34vw, 9.5rem)) 1.8rem;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
 
-.cards__hint { margin-top: .7rem; font-size: .85rem; color: var(--soft); }
+.cards::-webkit-scrollbar { display: none; }
+.cards[hidden] { display: none; }
+
+.wallet__dots { display: flex; justify-content: center; gap: .55rem; }
+
+.wallet__dot {
+  width: .55rem;
+  height: .55rem;
+  padding: 0;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color .25s ease, transform .25s ease;
+}
+
+.wallet__dot[aria-current="true"] { background: var(--gold); transform: scale(1.25); }
 
 .bank {
   --card-a: #1B2A6B;
@@ -735,8 +758,9 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto 1fr auto auto;
-  width: min(100%, 21rem);
+  flex: 0 0 min(68vw, 19rem);
   aspect-ratio: 85.6 / 54;
+  scroll-snap-align: center;
   padding: 6% 7% 6.5%;
   border-radius: 1rem;
   overflow: hidden;
@@ -748,8 +772,9 @@ a { color: inherit; }
     linear-gradient(135deg, var(--card-a), var(--card-b));
   background-blend-mode: normal, soft-light, normal;
   box-shadow: 0 14px 30px rgba(0, 0, 0, .4), inset 0 0 0 1px rgba(242, 212, 137, .45);
-  transform: perspective(900px) rotateX(4deg);
-  transition: transform .4s var(--ease-out);
+  opacity: var(--op, 1);
+  transform: perspective(900px) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));
+  transition: transform .12s linear, opacity .12s linear;
 }
 
 .bank--bride { --card-a: #A3243B; --card-b: #4A0B1C; }
@@ -806,10 +831,10 @@ a { color: inherit; }
   background: transparent;
   color: #FFF4D6;
   font-family: var(--sans);
-  font-size: clamp(1.15rem, 5.6vw, 1.45rem);
+  font-size: clamp(.95rem, 4.3vw, 1.25rem);
   font-weight: 500;
   font-variant-numeric: tabular-nums;
-  letter-spacing: .09em;
+  letter-spacing: .05em;
   white-space: nowrap;
   text-shadow: 0 1px 0 rgba(0, 0, 0, .55), 0 -1px 0 rgba(255, 255, 255, .25);
   cursor: copy;
@@ -842,7 +867,7 @@ a { color: inherit; }
   transition: opacity .25s ease;
 }
 
-.bank.is-copied { transform: perspective(900px) rotateX(0) scale(.98); }
+.bank.is-copied { transform: perspective(900px) rotateY(var(--ry, 0deg)) scale(calc(var(--sc, 1) * .97)); }
 .bank.is-copied .bank__toast { opacity: 1; }
 
 /* Лён для анкеты */
