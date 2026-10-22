@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Хожиакбар и Дилноза — приглашение на свадьбу</title>
+  <meta name="description" content="Хожиакбар и Дилноза приглашают Вас на свадьбу 26 ноября 2026">
+  <meta name="theme-color" content="#0E1538">
+  <meta property="og:title" content="Хожиакбар и Дилноза — приглашение на свадьбу">
+  <meta property="og:description" content="26 ноября 2026, Нурафшон. Xojiakbar va Dilnoza — toʻyga taklifnoma">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Commissioner:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-locked">
+
+  <!-- Общие градиенты: бархат арок и золото -->
+  <svg class="defs" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="velvet" cx="50%" cy="38%" r="80%">
+        <stop offset="0" stop-color="#26357A"/>
+        <stop offset=".55" stop-color="#16204F"/>
+        <stop offset="1" stop-color="#0A0F2E"/>
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <nav class="lang" id="lang" data-i18n-aria="langSwitch"></nav>
+
+  <!-- Вход: занавес из флагов Узбекистана и Казахстана -->
+  <div class="stage" id="stage">
+    <canvas class="stage__gl" id="curtains" aria-hidden="true"></canvas>
+    <div class="stage__fallback" id="curtainFallback" aria-hidden="true" hidden>
+      <div class="fb fb--l"></div>
+      <div class="fb fb--r"></div>
+    </div>
+    <div class="stage__rod" aria-hidden="true"></div>
+    <div class="stage__center">
+      <button class="medallion" id="openBtn" type="button" data-i18n-aria="openCurtain">
+        <span class="medallion__mono" data-bind="initials"></span>
+      </button>
+      <p class="stage__hint" data-i18n="hint"></p>
+    </div>
+  </div>
+
+  <canvas class="shashu" id="shashu" aria-hidden="true"></canvas>
+
+  <button class="music" id="music" type="button" aria-pressed="false" hidden>
+    <svg class="music__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path class="music__speaker" d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+      <path class="music__wave music__wave--1" d="M15.2 9.2a4 4 0 0 1 0 5.6"/>
+      <path class="music__wave music__wave--2" d="M17.8 6.6a7.6 7.6 0 0 1 0 10.8"/>
+      <path class="music__mute" d="M15.5 9.5l5 5m0-5l-5 5"/>
+    </svg>
+    <span class="music__label" data-i18n="musicLabel"></span>
+  </button>
+
+  <main>
+    <!-- Первый экран: атлас на ветру и бархатный портал -->
+    <header class="hero" id="hero">
+      <canvas class="hero__atlas" id="atlas" aria-hidden="true"></canvas>
+      <div class="arch ink" id="heroArch" data-height="440">
+        <div class="arch__content">
+          <p class="hero__lead" data-i18n="heroLead"></p>
+          <h1 class="hero__names">
+            <span class="name name--1" data-bind="groom"></span>
+            <span class="amp">&amp;</span>
+            <span class="name name--2" data-bind="bride"></span>
+          </h1>
+          <p class="hero__date" data-bind="dateLong"></p>
+          <p class="hero__city" data-bind="city"></p>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#invite" data-i18n-aria="scrollMore"><span></span></a>
+    </header>
+
+    <div class="divider divider--ribbon" aria-hidden="true"></div>
+
+    <!-- Обращение: резной ганч -->
+    <section class="block block--ganch" id="invite">
+      <h2 class="block__title" id="greeting"></h2>
+      <p class="prose reveal" data-i18n="invite1"></p>
+      <p class="prose reveal" data-i18n="invite2"></p>
+      <p class="signature reveal" data-i18n="signature"></p>
+    </section>
+
+    <div class="divider divider--ornament ink" aria-hidden="true"></div>
+
+    <!-- Когда: самаркандская майолика -->
+    <section class="block block--tiles" id="when">
+      <div class="glaze">
+        <h2 class="block__title" data-i18n="whenTitle"></h2>
+        <p class="prose reveal" data-i18n="whenLine"></p>
+
+        <div class="calendar reveal" id="calendar">
+          <p class="calendar__month" data-bind="monthYear"></p>
+          <div class="calendar__grid" id="calendarGrid"></div>
+        </div>
+
+        <div class="countdown reveal" id="countdown">
+          <p class="countdown__label" id="countdownLabel" data-i18n="countdownLabel"></p>
+          <div class="countdown__row">
+            <div class="countdown__cell"><span class="countdown__num" data-unit="d"></span><span class="countdown__unit" data-unit-label="d"></span></div>
+            <div class="countdown__cell"><span class="countdown__num" data-unit="h"></span><span class="countdown__unit" data-unit-label="h"></span></div>
+            <div class="countdown__cell"><span class="countdown__num" data-unit="m"></span><span class="countdown__unit" data-unit-label="m"></span></div>
+            <div class="countdown__cell"><span class="countdown__num" data-unit="s"></span><span class="countdown__unit" data-unit-label="s"></span></div>
+          </div>
+        </div>
+
+        <a class="btn btn--ghost reveal" id="addToCalendar" href="#" target="_blank" rel="noopener" data-i18n="addToCalendar"></a>
+      </div>
+    </section>
+
+    <div class="divider divider--ribbon" aria-hidden="true"></div>
+
+    <!-- Программа: вечер над степью и Самаркандом -->
+    <section class="block block--steppe" id="schedule">
+      <div class="steppe" aria-hidden="true">
+        <div class="steppe__stars" id="stars"></div>
+        <div class="steppe__sun" id="sun"></div>
+        <svg class="steppe__moon" id="moon" viewBox="0 0 40 40"><path d="M26 4 A16 16 0 1 0 26 36 A13 13 0 1 1 26 4 Z"/></svg>
+        <svg class="steppe__land" viewBox="0 0 400 130" preserveAspectRatio="xMidYMax slice">
+          <path class="land" d="M0 130 V100 Q50 88 110 98 T230 94 T400 96 V130 Z"/>
+          <!-- юрта -->
+          <path class="land" d="M58 100 V80 Q58 76 62 76 H128 Q132 76 132 80 V100 Z"/>
+          <path class="land" d="M54 78 Q95 44 136 78 Z"/>
+          <rect class="land" x="89" y="49" width="12" height="5" rx="1"/>
+          <rect class="lit" x="88" y="84" width="14" height="16" rx="1"/>
+          <!-- мечеть с куполом и минарет -->
+          <rect class="land" x="246" y="70" width="78" height="30"/>
+          <rect class="land" x="266" y="60" width="38" height="11"/>
+          <path class="land" d="M262 61 Q262 30 285 22 Q308 30 308 61 Z"/>
+          <rect class="land" x="284" y="12" width="2" height="11"/>
+          <path class="lit" d="M276 100 V86 Q276 78 285 76 Q294 78 294 86 V100 Z"/>
+          <rect class="land" x="336" y="28" width="12" height="72"/>
+          <rect class="land" x="333" y="26" width="18" height="5"/>
+          <path class="land" d="M336 26 Q342 14 348 26 Z"/>
+          <rect class="lit" x="340" y="44" width="4" height="7" rx="1"/>
+        </svg>
+      </div>
+      <h2 class="block__title" data-i18n="scheduleTitle"></h2>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <div class="divider divider--ornament ink" aria-hidden="true"></div>
+
+    <!-- Место: сюзане, вышитое на глазах -->
+    <section class="block block--suzani" id="place">
+      <div class="suzani ink" id="suzani" aria-hidden="true"></div>
+      <h2 class="block__title" data-i18n="placeTitle"></h2>
+      <p class="venue__name reveal" data-bind="venue.name"></p>
+      <p class="prose reveal" data-bind="venue.address"></p>
+      <a class="btn reveal" id="mapLink" href="#" target="_blank" rel="noopener" data-i18n="openMap"></a>
+    </section>
+
+    <div class="divider divider--ribbon" aria-hidden="true"></div>
+
+    <!-- Пожелания: казахская кошма -->
+    <section class="block block--felt" id="wishes">
+      <div class="felt-border felt-border--top ink" aria-hidden="true"></div>
+      <h2 class="block__title" data-i18n="wishesTitle"></h2>
+      <div class="wish reveal">
+        <h3 class="wish__title" data-i18n="presenceTitle"></h3>
+        <p class="prose" data-i18n="presenceText"></p>
+      </div>
+      <div class="wish reveal">
+        <h3 class="wish__title" data-i18n="giftsTitle"></h3>
+        <p class="prose" data-i18n="giftsText"></p>
+        <ul class="cards" id="cards"></ul>
+        <p class="cards__hint" id="cardsHint" data-i18n="copyHint"></p>
+      </div>
+      <div class="felt-border felt-border--bottom ink" aria-hidden="true"></div>
+    </section>
+
+    <div class="divider divider--ornament ink" aria-hidden="true"></div>
+
+    <!-- Анкета -->
+    <section class="block block--linen" id="rsvp">
+      <h2 class="block__title" data-i18n="rsvpTitle"></h2>
+      <p class="prose reveal" data-i18n="rsvpIntro"></p>
+
+      <div class="rsvp-stage reveal" id="rsvpStage">
+        <!-- value у вариантов всегда на русском: так ответы в таблице читаются одинаково на любом языке -->
+        <form class="form" id="rsvpForm" novalidate>
+          <label class="field">
+            <span class="field__label" data-i18n="fieldName"></span>
+            <input class="field__input" type="text" name="name" autocomplete="name" required>
+            <span class="field__error" id="nameError" data-i18n="nameError" hidden></span>
+          </label>
+
+          <fieldset class="field">
+            <legend class="field__label" data-i18n="fieldAttend"></legend>
+            <div class="choice-row">
+              <label class="choice"><input type="radio" name="attend" value="Приду" checked><span data-i18n="attendYes"></span></label>
+              <label class="choice"><input type="radio" name="attend" value="Не смогу"><span data-i18n="attendNo"></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field__label" data-i18n="fieldSide"></legend>
+            <div class="choice-row">
+              <label class="choice"><input type="radio" name="side" value="Жених"><span data-i18n="sideGroom"></span></label>
+              <label class="choice"><input type="radio" name="side" value="Невеста"><span data-i18n="sideBride"></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend class="field__label" data-i18n="fieldRelation"></legend>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="relation" value="Родственник"><span data-i18n="relKin"></span></label>
+              <label class="choice"><input type="radio" name="relation" value="Друг/подруга"><span data-i18n="relFriend"></span></label>
+              <label class="choice"><input type="radio" name="relation" value="Одноклассник/одногруппник"><span data-i18n="relClassmate"></span></label>
+              <label class="choice"><input type="radio" name="relation" value="Коллега"><span data-i18n="relColleague"></span></label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span class="field__label" data-i18n="fieldWishes"></span>
+            <textarea class="field__input" name="wishes" rows="3" data-i18n-placeholder="wishesPlaceholder"></textarea>
+          </label>
+
+          <button class="btn" type="submit" id="rsvpSubmit" data-i18n="submit"></button>
+          <p class="form__status" id="rsvpStatus" role="status"></p>
+        </form>
+
+        <div class="thanks" id="thanks" role="status" hidden>
+          <p class="thanks__text" id="thanksText"></p>
+          <p class="thanks__note" id="thanksNote"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider divider--ribbon" aria-hidden="true"></div>
+
+    <!-- Контакты и финал: снова атлас и бархатный портал -->
+    <footer class="block block--atlas" id="contacts">
+      <div class="arch arch--footer ink" data-height="500">
+        <div class="arch__content">
+          <h2 class="block__title" data-i18n="contactsTitle"></h2>
+          <p class="prose" data-i18n="contactsText"></p>
+          <ul class="contacts" id="contactList"></ul>
+          <p class="footer__text" data-i18n="footer"></p>
+          <p class="footer__mono" data-bind="initials"></p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/textiles.js"></script>
+  <script src="js/weave.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
