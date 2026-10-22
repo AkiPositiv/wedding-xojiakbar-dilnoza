@@ -43,6 +43,11 @@ function getSheet_() {
     sheet.setFrozenRows(1);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight("bold");
   }
+  // лист с ответами всегда первый — его видно сразу при открытии таблицы
+  if (sheet.getIndex() !== 1) {
+    ss.setActiveSheet(sheet);
+    ss.moveActiveSheet(1);
+  }
   return sheet;
 }
 
