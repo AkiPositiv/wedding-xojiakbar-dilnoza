@@ -859,9 +859,12 @@
     const cv = $("#knot");
     const ctx = cv.getContext("2d");
     const medal = $("#knotRings");
+    const portal = $("#portal");
+    const wall = $("#portalWall");
+    const portalFrame = $("#portalFrame");
     const N = 140; // отрезков в каждой нити
     const SPLIT = 0.55; // доля нити, которая уходит на шнур; остальное — на кольцо
-    const TURNS = 4.25; // витков шнура; четверть в конце сводит пряди точно к верху кольца
+    const TURNS = 5.25; // витков шнура (он начинается за стеной у верхнего края); четверть в конце сводит пряди к верху кольца
     const mix = (a, b, k) => a + (b - a) * k;
     const bez = (a, b, c, d, t) => {
       const u = 1 - t;
@@ -874,6 +877,8 @@
     let cy = 0;
     let ring = 0;
     let w = 0;
+    let apex = 0; // верх арки: отсюда свисают нити
+    let half = 0; // половина ширины арки
     let p = 0; // 0 — нити висят, 1 — узел завязан
     let drag = null;
     let tying = false;
@@ -894,13 +899,41 @@
       cy = r.top + r.height / 2;
       w = clamp(W * 0.045, 14, 22);
       ring = medal.offsetWidth / 2 + 5 + w * 0.7;
+      buildPortal();
     }
 
-    // Нить висит свободно: от верхнего края к кисточке и чуть покачивается.
+    // Стена из майолики с вырезом стрельчатой арки, как у самаркандских порталов.
+    // Сквозь арку видно небо; кайма — тёмный кобальт, бирюза, белые бусины и золото.
+    function buildPortal() {
+      half = Math.min(W * 0.4, H * 0.33);
+      apex = H * 0.15;
+      const L = cx - half;
+      const R = cx + half;
+      const S = H * 0.36; // где стены арки переходят в свод
+      const B = H + 40;
+      const n = (v) => v.toFixed(1);
+      const arch =
+        `M${n(L)} ${n(B)} V${n(S)} ` +
+        `C${n(L)} ${n(S - (S - apex) * 0.55)} ${n(cx - half * 0.3)} ${n(apex + (S - apex) * 0.18)} ${n(cx)} ${n(apex)} ` +
+        `C${n(cx + half * 0.3)} ${n(apex + (S - apex) * 0.18)} ${n(R)} ${n(S - (S - apex) * 0.55)} ${n(R)} ${n(S)} V${n(B)}`;
+      wall.style.clipPath = `path(evenodd, "M0 0 H${W} V${H} H0 Z ${arch} Z")`;
+      portal.style.transformOrigin = `${n(cx)}px ${n((S + H) / 2)}px`;
+
+      portalFrame.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      portalFrame.innerHTML =
+        `<g fill="none" stroke-linecap="round">` +
+        `<path d="${arch}" stroke="#0C2558" stroke-width="30"/>` +
+        `<path d="${arch}" stroke="#1FA4A8" stroke-width="20"/>` +
+        `<path d="${arch}" stroke="#F4F1E8" stroke-width="5" stroke-dasharray="0 10"/>` +
+        `<path d="${arch}" stroke="#D4A647" stroke-width="2.5"/>` +
+        `</g>`;
+    }
+
+    // Нить висит свободно: из-под свода арки к кисточке и чуть покачивается.
     function hanging(side, s, time) {
       const endY = Math.min(H * 0.8, cy + ring + H * 0.2) + p * H * 0.06;
-      const x = bez(cx + side * W * 0.34, cx + side * W * 0.46, cx + side * W * 0.22, cx + side * W * 0.12, s);
-      const y = bez(-w, H * 0.3, endY - H * 0.15, endY, s);
+      const x = bez(cx + side * w * 0.6, cx + side * half * 0.75, cx + side * half * 0.5, cx + side * half * 0.28, s);
+      const y = bez(apex - w, apex + H * 0.25, endY - H * 0.15, endY, s);
       const sway = reduceMotion ? 0 : Math.sin(time * 1.1 + side * 1.7 + s * 2) * 7 * s * s;
       return [x + sway, y];
     }

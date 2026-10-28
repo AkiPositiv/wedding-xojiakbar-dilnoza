@@ -60,24 +60,63 @@ a { color: inherit; }
 .reveal { opacity: 0; transition: opacity 1.1s ease; }
 .reveal.is-visible { opacity: 1; }
 
-/* ---------- Вход: две нити, узел и обручальные кольца ---------- */
+/* ---------- Вход: портал из майолики, две нити, узел и обручальные кольца ---------- */
 
 .stage {
   position: fixed;
   inset: 0;
   z-index: 50;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 40%, #26357A, #16204F 55%, #0A0F2E);
+  background: #BFE3F2;
   cursor: grab;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
-  transition: opacity 1.2s ease, visibility 0s linear 1.2s;
+  transition: opacity 1s ease .5s, visibility 0s linear 1.5s;
 }
 
 .stage.is-pulling { cursor: grabbing; }
 .stage.is-opening { opacity: 0; }
 .stage.is-gone { visibility: hidden; pointer-events: none; }
+
+/* небо за аркой: голубое вверху, тёплое у горизонта, плывут облака */
+.stage__sky {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(255, 232, 190, .95), transparent 70%),
+    linear-gradient(180deg, #7FC0E4 0%, #B9E0F1 45%, #F4EAD6 100%);
+}
+
+.stage__sky::before,
+.stage__sky::after {
+  content: "";
+  position: absolute;
+  left: -70%;
+  width: 70%;
+  height: 10%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0));
+  animation: cloud 46s linear infinite;
+}
+
+.stage__sky::before { top: 24%; animation-delay: -12s; }
+.stage__sky::after { top: 38%; height: 7%; width: 50%; animation-duration: 60s; animation-delay: -40s; }
+
+@keyframes cloud { to { transform: translateX(310%); } }
+
+/* силуэт Самарканда у горизонта: купола и минареты */
+.stage__city {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 22%;
+  fill: #5C93B3;
+  opacity: .3;
+}
 
 .stage__knot {
   position: absolute;
@@ -85,6 +124,38 @@ a { color: inherit; }
   width: 100%;
   height: 100%;
   transition: transform 1.4s var(--ease-out);
+}
+
+/* стена и кайма арки; при открытии мы будто проходим сквозь арку */
+.stage__portal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: transform 1.6s cubic-bezier(.6, 0, .35, 1);
+}
+
+.stage__wall {
+  position: absolute;
+  inset: 0;
+  background-color: #163A7D;
+  background-image: var(--tiles);
+  background-size: 64px 64px;
+}
+
+.stage__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 6px 10px rgba(6, 14, 40, .35));
+}
+
+.stage.is-opening .stage__portal { transform: scale(4.5); }
+
+/* без поддержки clip-path: path() стена закрыла бы нити — тогда остаются небо и кайма */
+@supports not (clip-path: path("M0 0 H1 V1 Z")) {
+  .stage__wall { display: none; }
 }
 
 /* значок с кольцами проявляется внутри кольца, которое свили нити */
