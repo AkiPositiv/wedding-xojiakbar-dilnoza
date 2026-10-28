@@ -21,8 +21,7 @@ window.I18N = {
 
     docTitle: "{groom} и {bride} — приглашение на свадьбу",
     langSwitch: "Язык",
-    openCurtain: "Открыть занавес",
-    hint: "Коснитесь, чтобы открыть занавес",
+    hint: "Потяните за кисточку",
     musicLabel: "Музыка",
     musicOn: "Включить музыку",
     musicOff: "Выключить музыку",
@@ -31,9 +30,9 @@ window.I18N = {
 
     greeting: "Дорогие родные и друзья!",
     greetingGuest: "Дорогие {guest}!",
-    invite1: "Есть дни, которые хочется прожить в кругу самых близких. Для нас таким днём станет день нашей свадьбы — и мы очень хотим, чтобы Вы были рядом.",
-    invite2: "Приглашаем Вас разделить с нами радость этого события.",
-    signature: "С любовью,\n{groom} и {bride}",
+    invite1: "Приглашаем Вас на нашу свадьбу.",
+    invite2: "Будем рады Вас видеть.",
+    signature: "{groom} и {bride}",
 
     whenTitle: "Когда",
     whenLine: "{Weekday}, {date}, начало в {time}",
@@ -41,6 +40,8 @@ window.I18N = {
     countdownLabel: "До свадьбы осталось",
     countdownDone: "Этот день настал — мы стали семьёй!",
     addToCalendar: "Добавить в Google Календарь",
+    remindBefore: "Напомнить за 3 дня",
+    reminderTitle: "Через 3 дня — {title}",
     calendarDetails: "Ждём Вас на нашей свадьбе!",
 
     scheduleTitle: "Программа вечера",
@@ -48,9 +49,6 @@ window.I18N = {
     placeTitle: "Место",
     openMap: "Открыть на карте",
 
-    wishesTitle: "Пожелания",
-    presenceTitle: "Ваше присутствие",
-    presenceText: "Для нас самое ценное — провести этот день рядом с близкими. Ваши улыбки, тёплые слова и хорошее настроение сделают праздник по-настоящему особенным.",
 
     rsvpTitle: "Анкета гостя",
     rsvpIntro: "Пожалуйста, ответьте до {deadline} — так нам будет проще всё подготовить.",
@@ -73,11 +71,11 @@ window.I18N = {
     sending: "Отправляем…",
     sendError: "Не удалось отправить ответ. Проверьте интернет и попробуйте ещё раз.",
     thanksYes: "Спасибо! Ждём Вас на празднике.",
-    thanksNo: "Спасибо, что ответили! Будем скучать.",
+    thanksNo: "Спасибо, что ответили.",
     demoNote: "Демо-режим: ответ никуда не отправлен. Укажите rsvpEndpoint в js/config.js.",
 
     contactsTitle: "Контакты",
-    contactsText: "Если остались вопросы — звоните, с радостью ответим.",
+    contactsText: "Если есть вопросы, звоните.",
     footer: "Ждём Вас!",
   },
 
@@ -95,8 +93,7 @@ window.I18N = {
 
     docTitle: "{groom} va {bride} — toʻyga taklifnoma",
     langSwitch: "Til",
-    openCurtain: "Pardani ochish",
-    hint: "Pardani ochish uchun bosing",
+    hint: "Popukni torting",
     musicLabel: "Musiqa",
     musicOn: "Musiqani yoqish",
     musicOff: "Musiqani oʻchirish",
@@ -105,9 +102,9 @@ window.I18N = {
 
     greeting: "Qadrli qarindoshlar va doʻstlar!",
     greetingGuest: "Hurmatli {guest}!",
-    invite1: "Hayotda shunday kunlar boʻladiki, ularni eng yaqin insonlar davrasida oʻtkazgingiz keladi. Biz uchun toʻyimiz ana shunday kun — va bu kunda Siz yonimizda boʻlishingizni chin dildan istaymiz.",
-    invite2: "Sizni ushbu quvonchli kunimizni biz bilan birga baham koʻrishga taklif qilamiz.",
-    signature: "Hurmat bilan,\n{groom} va {bride}",
+    invite1: "Sizni toʻyimizga taklif qilamiz.",
+    invite2: "Sizni kutib qolamiz.",
+    signature: "{groom} va {bride}",
 
     whenTitle: "Qachon",
     whenLine: "{date}, {weekday}. Boshlanishi — soat {time}",
@@ -115,6 +112,8 @@ window.I18N = {
     countdownLabel: "Toʻygacha qoldi",
     countdownDone: "Bu kun keldi — biz oila boʻldik!",
     addToCalendar: "Google Taqvimga qoʻshish",
+    remindBefore: "3 kun oldin eslatish",
+    reminderTitle: "3 kundan keyin — {title}",
     calendarDetails: "Sizni toʻyimizda kutamiz!",
 
     scheduleTitle: "Kecha dasturi",
@@ -122,9 +121,6 @@ window.I18N = {
     placeTitle: "Manzil",
     openMap: "Xaritada ochish",
 
-    wishesTitle: "Istaklarimiz",
-    presenceTitle: "Sizning ishtirokingiz",
-    presenceText: "Biz uchun eng qadrlisi — bu kunni yaqinlarimiz davrasida oʻtkazish. Tabassumingiz, iliq soʻzlaringiz va yaxshi kayfiyatingiz bayramimizni chinakam unutilmas qiladi.",
 
     rsvpTitle: "Mehmon anketasi",
     rsvpIntro: "Iltimos, {deadline}gacha javob bering — shunda hammasini tayyorlash bizga osonroq boʻladi.",
@@ -147,11 +143,11 @@ window.I18N = {
     sending: "Yuborilmoqda…",
     sendError: "Javobni yuborib boʻlmadi. Internetni tekshirib, qaytadan urinib koʻring.",
     thanksYes: "Rahmat! Sizni toʻyda kutamiz.",
-    thanksNo: "Javobingiz uchun rahmat! Sizni sogʻinamiz.",
+    thanksNo: "Javobingiz uchun rahmat.",
     demoNote: "Demo rejim: javob hech qayerga yuborilmadi. js/config.js faylida rsvpEndpoint ni koʻrsating.",
 
     contactsTitle: "Aloqa",
-    contactsText: "Savollaringiz boʻlsa, qoʻngʻiroq qiling — mamnuniyat bilan javob beramiz.",
+    contactsText: "Savollaringiz boʻlsa, qoʻngʻiroq qiling.",
     footer: "Sizni kutamiz!",
   },
 
@@ -169,8 +165,7 @@ window.I18N = {
 
     docTitle: "{groom} мен {bride} — үйлену тойына шақыру",
     langSwitch: "Тіл",
-    openCurtain: "Пердені ашу",
-    hint: "Пердені ашу үшін басыңыз",
+    hint: "Шашақты тартыңыз",
     musicLabel: "Музыка",
     musicOn: "Музыканы қосу",
     musicOff: "Музыканы өшіру",
@@ -179,9 +174,9 @@ window.I18N = {
 
     greeting: "Құрметті туыстар мен достар!",
     greetingGuest: "Құрметті {guest}!",
-    invite1: "Өмірде ең жақын адамдардың ортасында өткізгің келетін күндер болады. Біз үшін үйлену тойымыз — дәл сондай күн, және осы күні Сіздің қасымызда болғаныңызды шын жүректен қалаймыз.",
-    invite2: "Сізді осы қуанышты күнімізді бізбен бірге бөлісуге шақырамыз.",
-    signature: "Құрметпен,\n{groom} мен {bride}",
+    invite1: "Сізді үйлену тойымызға шақырамыз.",
+    invite2: "Сізді күтеміз.",
+    signature: "{groom} мен {bride}",
 
     whenTitle: "Қашан",
     whenLine: "{date}, {weekday}. Басталуы — сағат {time}",
@@ -189,6 +184,8 @@ window.I18N = {
     countdownLabel: "Тойға дейін қалды",
     countdownDone: "Сол күн келді — біз отбасы болдық!",
     addToCalendar: "Google Күнтізбеге қосу",
+    remindBefore: "3 күн бұрын еске салу",
+    reminderTitle: "3 күннен кейін — {title}",
     calendarDetails: "Сізді тойымызда күтеміз!",
 
     scheduleTitle: "Кеш бағдарламасы",
@@ -196,9 +193,6 @@ window.I18N = {
     placeTitle: "Өтетін орны",
     openMap: "Картадан ашу",
 
-    wishesTitle: "Тілектеріміз",
-    presenceTitle: "Сіздің қатысуыңыз",
-    presenceText: "Біз үшін ең қымбаты — осы күнді жақындарымыздың ортасында өткізу. Сіздің күлкіңіз, жылы лебізіңіз бен көтеріңкі көңіл-күйіңіз мерекемізді шынымен ерекше етеді.",
 
     rsvpTitle: "Қонақ сауалнамасы",
     rsvpIntro: "Өтінеміз, {deadline} дейін жауап беріңіз — осылайша бәрін дайындау бізге оңайырақ болады.",
@@ -221,11 +215,11 @@ window.I18N = {
     sending: "Жіберілуде…",
     sendError: "Жауапты жіберу мүмкін болмады. Интернетті тексеріп, қайталап көріңіз.",
     thanksYes: "Рақмет! Сізді тойда күтеміз.",
-    thanksNo: "Жауабыңызға рақмет! Сізді сағынамыз.",
+    thanksNo: "Жауабыңызға рақмет.",
     demoNote: "Демо режим: жауап ешқайда жіберілген жоқ. js/config.js файлында rsvpEndpoint көрсетіңіз.",
 
     contactsTitle: "Байланыс",
-    contactsText: "Сұрақтарыңыз болса, қоңырау шалыңыз — қуана жауап береміз.",
+    contactsText: "Сұрақтарыңыз болса, қоңырау шалыңыз.",
     footer: "Сізді күтеміз!",
   },
 };

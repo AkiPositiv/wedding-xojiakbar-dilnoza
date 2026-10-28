@@ -60,64 +60,47 @@ a { color: inherit; }
 .reveal { opacity: 0; transition: opacity 1.1s ease; }
 .reveal.is-visible { opacity: 1; }
 
-/* ---------- Вход: занавес ---------- */
+/* ---------- Вход: две нити и узел-медальон ---------- */
 
 .stage {
   position: fixed;
   inset: 0;
   z-index: 50;
-  cursor: pointer;
-  transition: opacity .7s ease, visibility 0s linear .7s;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, #26357A, #16204F 55%, #0A0F2E);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 1.2s ease, visibility 0s linear 1.2s;
 }
 
-.stage.is-gone { opacity: 0; visibility: hidden; pointer-events: none; }
+.stage.is-pulling { cursor: grabbing; }
+.stage.is-opening { opacity: 0; }
+.stage.is-gone { visibility: hidden; pointer-events: none; }
 
-.stage__gl,
-.stage__fallback {
+.stage__knot {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  transition: transform 1.4s var(--ease-out);
 }
 
-.stage__fallback[hidden] { display: none; }
-
-.fb {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50.5%;
-  background-size: 100% 100%;
-  transition: transform 1.8s cubic-bezier(.65, 0, .35, 1);
-}
-
-.fb--l { left: 0; }
-.fb--r { right: 0; }
-.stage__fallback.is-open .fb--l { transform: translateX(-92%); }
-.stage__fallback.is-open .fb--r { transform: translateX(92%); }
-
-.stage__rod {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 12px;
-  background: linear-gradient(180deg, #8A6420, #F2D489 45%, #B68A32 70%, #6E4E16);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, .35);
-}
-
-.stage__center {
+/* медальон проявляется внутри кольца, которое свили нити */
+.stage__medallion {
   position: absolute;
   left: 50%;
-  top: 50%;
-  display: grid;
-  justify-items: center;
-  gap: 1rem;
-  transform: translate(-50%, -50%);
-  transition: opacity .4s ease, transform .5s var(--ease-out);
+  top: 40%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.55);
+  transition: opacity .7s ease, transform .9s cubic-bezier(.3, 1.5, .5, 1);
+  pointer-events: none;
 }
 
-.stage.is-opening .stage__center { opacity: 0; transform: translate(-50%, -50%) scale(1.15); }
+.stage.is-tied .stage__medallion { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.stage.is-opening .stage__knot { transform: scale(1.35); }
+.stage.is-opening .stage__medallion { transform: translate(-50%, -50%) scale(1.35); transition-duration: 1.4s; }
 
 .medallion {
   position: relative;
@@ -163,14 +146,44 @@ a { color: inherit; }
 }
 
 .stage__hint {
-  padding: .45rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: max(2rem, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .15rem;
+  padding: .5rem 1.2rem .4rem;
+  border: 1px solid rgba(212, 166, 71, .6);
   border-radius: 999px;
   background: rgba(10, 16, 48, .62);
   backdrop-filter: blur(6px);
   color: #F6EBD0;
-  font-size: .9rem;
+  font: 300 .95rem/1.3 var(--sans);
   text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition: opacity .4s ease;
 }
+
+/* стрелка вниз: показывает, куда тянуть */
+.stage__hint::after {
+  content: "";
+  width: .55rem;
+  height: .55rem;
+  border-right: 2px solid var(--gold-light);
+  border-bottom: 2px solid var(--gold-light);
+  transform: rotate(45deg);
+  animation: pull-hint 1.4s ease-in-out infinite;
+}
+
+@keyframes pull-hint {
+  0%, 100% { transform: translateY(-2px) rotate(45deg); opacity: .6; }
+  50% { transform: translateY(4px) rotate(45deg); opacity: 1; }
+}
+
+.stage.is-pulling .stage__hint { opacity: 0; pointer-events: none; }
 
 /* ---------- Шашу, музыка, языки ---------- */
 
@@ -440,11 +453,11 @@ a { color: inherit; }
 }
 
 .hero__scroll-arrow {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 2rem;
+  height: 2rem;
   fill: none;
   stroke: var(--gold-light);
-  stroke-width: 2;
+  stroke-width: 2.4;
   stroke-linecap: round;
   stroke-linejoin: round;
   animation: scroll-bob 1.8s ease-in-out infinite;
@@ -452,7 +465,7 @@ a { color: inherit; }
 
 @keyframes scroll-bob {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(.3rem); }
+  50% { transform: translateY(.5rem); }
 }
 
 /* ---------- Разделители ---------- */
@@ -716,36 +729,23 @@ a { color: inherit; }
   line-height: 1.2;
 }
 
-/* Казахская кошма: красный войлок с аппликацией */
-.block--felt {
-  --ink: #F7EBD9;
-  --soft: #E3C9B4;
-  --accent: #F0C46A;
-  padding: 6.5rem 1.25rem;
-  background-color: #8F1D2C;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .85 0 0 0 0 .75 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* Карта в квадратном окошке */
+.map {
+  width: min(100%, 22rem);
+  aspect-ratio: 1;
+  padding: 5px;
+  border: 1px solid var(--gold);
+  border-radius: 1rem;
+  background: #FBF7EF;
+  box-shadow: 0 10px 24px rgba(58, 31, 36, .18);
 }
 
-.felt-border {
-  position: absolute;
-  left: 0;
-  right: 0;
-  max-width: none;
-  height: 3rem;
-}
-
-.felt-border--top { top: 1.4rem; }
-.felt-border--bottom { bottom: 1.4rem; }
-.felt-border svg { display: block; width: 100%; height: 100%; }
-
-.wish { display: grid; gap: .4rem; }
-.wish + .wish { margin-top: .6rem; }
-
-.wish__title {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--accent);
+.map__frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: calc(1rem - 5px);
 }
 
 /* Лён для анкеты */
@@ -802,6 +802,8 @@ a { color: inherit; }
 }
 
 .btn:hover { filter: brightness(1.06); }
+
+.cal-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
 .btn--ghost { background: transparent; color: var(--ink); box-shadow: none; }
 .btn--ghost:hover { background: rgba(212, 166, 71, .15); }
 .btn[disabled] { opacity: .6; cursor: progress; }

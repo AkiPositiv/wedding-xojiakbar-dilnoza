@@ -1,10 +1,7 @@
-// Процедурные «ткани» и символы: ханатлас, флаги-занавеси, казахский орнамент,
+// Процедурные «ткани» и символы: ханатлас, казахский орнамент,
 // узоры ганча и майолики. Всё рисуется кодом — без картинок.
 window.Textiles = (() => {
   "use strict";
-
-  const UZ = { blue: "#0099B5", red: "#CE1126", white: "#FFFFFF", green: "#1EB53A" };
-  const KZ = { sky: "#00AFCA", gold: "#FEC50C" };
 
   // «Қошқар мүйіз» — бараньи рога, главный мотив казахского орнамента. Рамка 40×40, рога вверх.
   const HORNS =
@@ -17,16 +14,6 @@ window.Textiles = (() => {
     c.width = w;
     c.height = h;
     return c;
-  }
-
-  function starPath(ctx, cx, cy, R, r, n = 5, rot = -Math.PI / 2) {
-    ctx.beginPath();
-    for (let i = 0; i < n * 2; i++) {
-      const rad = i % 2 ? r : R;
-      const a = rot + (i * Math.PI) / n;
-      ctx[i ? "lineTo" : "moveTo"](cx + Math.cos(a) * rad, cy + Math.sin(a) * rad);
-    }
-    ctx.closePath();
   }
 
   // Восьмиконечная звезда из двух квадратов (хатам) — SVG-путь.
@@ -192,135 +179,6 @@ window.Textiles = (() => {
     return r;
   }
 
-  /* ---------- Флаги-занавеси ---------- */
-
-  function weave(c, W, H) {
-    c.globalAlpha = 0.045;
-    c.fillStyle = "#000";
-    for (let x = 0; x < W; x += 3) c.fillRect(x, 0, 1, H);
-    c.fillStyle = "#fff";
-    for (let y = 0; y < H; y += 3) c.fillRect(0, y, W, 1);
-    c.globalAlpha = 1;
-  }
-
-  // Флаг Узбекистана на вертикальном полотне: синяя, белая и зелёная полосы с красными каймами,
-  // в синей — полумесяц и 12 звёзд (3 + 4 + 5, выровнены вправо).
-  function uzCurtain(W, H) {
-    const cv = canvas(W, H);
-    const c = cv.getContext("2d");
-    const band = H * 0.315;
-    const line = Math.max(2, H * 0.014);
-    c.fillStyle = UZ.white;
-    c.fillRect(0, 0, W, H);
-    c.fillStyle = UZ.blue;
-    c.fillRect(0, 0, W, band);
-    c.fillStyle = UZ.green;
-    c.fillRect(0, H - band, W, band);
-    c.fillStyle = UZ.red;
-    c.fillRect(0, band, W, line);
-    c.fillRect(0, H - band - line, W, line);
-
-    const s = Math.min((W * 0.8) / 8, (band * 0.62) / 3);
-    const r = 1.35 * s;
-    const x0 = (W - 8 * s) / 2;
-    const cy = band * 0.52;
-    c.fillStyle = UZ.white;
-    c.beginPath();
-    c.arc(x0 + r, cy, r, 0, Math.PI * 2);
-    c.fill();
-    c.fillStyle = UZ.blue;
-    c.beginPath();
-    c.arc(x0 + r + 0.34 * r, cy, 0.86 * r, 0, Math.PI * 2);
-    c.fill();
-
-    const gx = x0 + 2 * r + 0.9 * s;
-    const rows = [[2, 3, 4], [1, 2, 3, 4], [0, 1, 2, 3, 4]];
-    c.fillStyle = UZ.white;
-    rows.forEach((cols, ri) =>
-      cols.forEach((ci) => {
-        starPath(c, gx + ci * s, cy + (ri - 1) * s, 0.4 * s, 0.153 * s);
-        c.fill();
-      })
-    );
-    weave(c, W, H);
-    return cv;
-  }
-
-  // Беркут из казахского флага, упрощённый силуэт. Размах крыльев — 200 единиц.
-  const WING = "M6 -2 C28 -16 58 -24 98 -22 L86 -13 L95 -9 L79 -4 L86 1 L68 2 L72 7 L54 7 L56 12 L38 10 L36 14 L20 9 L10 10 Z";
-  const BODY = "M-7 -8 C-11 4 -9 16 0 22 C9 16 11 4 7 -8 C5 -14 -5 -14 -7 -8 Z";
-  const TAIL = "M-7 18 L-10 32 L-4 29 L0 34 L4 29 L10 32 L7 18 Z";
-  const BEAK = "M-10 -18 L-17 -13.5 L-10 -12 Z";
-
-  function eagle(c, cx, cy, span, color, eye) {
-    const s = span / 200;
-    c.save();
-    c.translate(cx, cy);
-    c.scale(s, s);
-    c.fillStyle = color;
-    const wing = new Path2D(WING);
-    c.fill(wing);
-    c.save();
-    c.scale(-1, 1);
-    c.fill(wing);
-    c.restore();
-    c.fill(new Path2D(BODY));
-    c.fill(new Path2D(TAIL));
-    c.fill(new Path2D(BEAK));
-    c.beginPath();
-    c.arc(-5, -16, 6.5, 0, Math.PI * 2);
-    c.fill();
-    c.fillStyle = eye;
-    c.beginPath();
-    c.arc(-6.5, -17, 1.3, 0, Math.PI * 2);
-    c.fill();
-    c.restore();
-  }
-
-  // Флаг Казахстана: голубое полотно, золотое солнце с 32 лучами, беркут
-  // и полоса орнамента у древка — здесь она идёт вдоль шва, где сходятся половины.
-  function kzCurtain(W, H) {
-    const cv = canvas(W, H);
-    const c = cv.getContext("2d");
-    c.fillStyle = KZ.sky;
-    c.fillRect(0, 0, W, H);
-
-    const bw = Math.max(18, W * 0.13);
-    const sc = (bw / 40) * 0.9;
-    const horns = new Path2D(HORNS);
-    c.strokeStyle = KZ.gold;
-    c.lineWidth = 3.4;
-    c.lineCap = "round";
-    for (let y = -20 * sc; y < H; y += 44 * sc) {
-      c.save();
-      c.translate(bw * 0.05, y);
-      c.scale(sc, sc);
-      c.stroke(horns);
-      c.restore();
-    }
-
-    const fw = W - bw;
-    const cx = bw + fw / 2;
-    const R = fw * 0.16;
-    const cy = H * 0.3;
-    c.fillStyle = KZ.gold;
-    c.beginPath();
-    c.arc(cx, cy, R, 0, Math.PI * 2);
-    c.fill();
-    for (let i = 0; i < 32; i++) {
-      const a = (i / 32) * Math.PI * 2;
-      const da = (Math.PI / 32) * 0.55;
-      c.beginPath();
-      c.moveTo(cx + Math.cos(a - da) * R * 1.18, cy + Math.sin(a - da) * R * 1.18);
-      c.lineTo(cx + Math.cos(a) * R * 1.62, cy + Math.sin(a) * R * 1.62);
-      c.lineTo(cx + Math.cos(a + da) * R * 1.18, cy + Math.sin(a + da) * R * 1.18);
-      c.fill();
-    }
-    eagle(c, cx, cy + R * 2.6, fw * 0.82, KZ.gold, KZ.sky);
-    weave(c, W, H);
-    return cv;
-  }
-
   /* ---------- Узоры фонов (SVG data URL) ---------- */
 
   const svgUrl = (svg) => `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
@@ -352,5 +210,5 @@ window.Textiles = (() => {
     return svgUrl(svg);
   }
 
-  return { HORNS, khatamD, atlasTile, ribbonTexture, uzCurtain, kzCurtain, ganchPattern, tilePattern };
+  return { HORNS, khatamD, atlasTile, ribbonTexture, ganchPattern, tilePattern };
 })();

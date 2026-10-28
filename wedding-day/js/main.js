@@ -107,6 +107,11 @@
     renderContacts();
     buildCalendar();
     $("#addToCalendar").href = googleCalendarUrl(v);
+    $("#remindBefore").href = googleCalendarUrl(v, {
+      start: new Date(weddingDate.getTime() - 3 * 24 * 3600 * 1000),
+      hours: 0.5,
+      title: t("reminderTitle", { title: tr(C.eventTitle) }),
+    });
     $$(".lang__btn").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
     music.setState(music.isPlaying());
     countdownTick?.();
@@ -146,7 +151,8 @@
 
   function buildStatic() {
     if (guestName) $("#rsvpForm").elements.name.value = guestName;
-    $("#mapLink").href = C.venue.mapUrl;
+    $("#mapLink").href = `https://www.google.com/maps/search/?api=1&query=${C.venue.coords}`;
+    $("#mapFrame").src = `https://maps.google.com/maps?q=${C.venue.coords}&z=16&output=embed`;
 
     const timeline = $("#timeline");
     C.schedule.forEach((item, i) => {
@@ -304,14 +310,16 @@
 
   /* ---------- Добавить в Google Календарь ---------- */
 
-  function googleCalendarUrl(v) {
+  // Ссылка-шаблон Google Календаря не умеет задавать время напоминания, поэтому
+  // напоминание за 3 дня — отдельное короткое событие, о котором Google уведомит как обычно.
+  function googleCalendarUrl(v, { start = weddingDate, hours = C.durationHours, title = tr(C.eventTitle) } = {}) {
     const toUtc = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-    const end = new Date(weddingDate.getTime() + C.durationHours * 3600 * 1000);
+    const end = new Date(start.getTime() + hours * 3600 * 1000);
     const pageUrl = location.protocol.startsWith("http") ? location.origin + location.pathname : "";
     const params = new URLSearchParams({
       action: "TEMPLATE",
-      text: tr(C.eventTitle),
-      dates: `${toUtc(weddingDate)}/${toUtc(end)}`,
+      text: title,
+      dates: `${toUtc(start)}/${toUtc(end)}`,
       details: [t("calendarDetails"), pageUrl].filter(Boolean).join("\n"),
       location: `${v["venue.name"]}, ${v["venue.address"]}`,
       ctz: C.timeZone,
@@ -375,23 +383,6 @@
       stroke(svg, X.HORNS, { transform: "translate(228 16) rotate(90) scale(.8)", delay: 0.5 });
       svg.append(svgEl("circle", { cx: 160, cy: 32, r: 22, class: "medal" }));
       stroke(svg, X.HORNS, { transform: "translate(146 18) scale(.7)", delay: 0.8 });
-      node.append(svg);
-    });
-  }
-
-  // Кайма кошмы: цепочка рогов-аппликаций сверху и снизу.
-  function buildFeltBorders() {
-    $$(".felt-border").forEach((node) => {
-      const top = node.classList.contains("felt-border--top");
-      const svg = svgEl("svg", { viewBox: "0 0 480 48", preserveAspectRatio: "xMidYMid slice" });
-      svg.style.setProperty("--stroke", "#F3DFC1");
-      svg.style.setProperty("--sw", "1.8");
-      stroke(svg, top ? "M0 46 H480" : "M0 2 H480", { dur: 1.6 });
-      for (let i = 0; i < 12; i++) {
-        const x = i * 40;
-        const tf = top ? `translate(${x + 40} 44) rotate(180)` : `translate(${x} 4)`;
-        stroke(svg, X.HORNS, { transform: tf, delay: 0.3 + Math.abs(i - 5.5) * 0.12, dur: 1 });
-      }
       node.append(svg);
     });
   }
@@ -840,67 +831,313 @@
     },
   };
 
-  /* ---------- Занавес ---------- */
+  /* ---------- Вход: две нити сплетаются в узел ---------- */
 
-  function setupCurtains(atlas) {
+  // Слева нить узбекского атласа, справа — казахская бирюзовая с золотом.
+  // band(k) — цвет полосы на k-м отрезке нити (null — видна основа).
+  const CORDS = [
+    {
+      side: -1,
+      base: "#B0103C",
+      edge: "#4A0614",
+      twist: "rgba(20, 20, 20, .3)",
+      band: (k) => ["#F4C430", null, "#F7F1E3", "#1B3E9E", "#1B3E9E", null, "#16884A", "#F4C430", "#C8166E", null][Math.floor(k / 3) % 10],
+    },
+    {
+      side: 1,
+      base: "#00AFCA",
+      edge: "#00596B",
+      twist: "rgba(254, 197, 12, .8)",
+      band: (k) => (k % 8 < 2 ? "#FEC50C" : null),
+    },
+  ];
+
+  // Гость тянет за кисточку вниз (или просто касается): нити свиваются в шнур,
+  // шнур обвивает круг, и внутри кольца проявляется медальон с инициалами.
+  function setupKnot(atlas) {
     const stage = $("#stage");
-    const glCanvas = $("#curtains");
-    const fallback = $("#curtainFallback");
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    const tw = Math.min(1024, Math.round((window.innerWidth / 2) * dpr));
-    const th = Math.min(2048, Math.round(window.innerHeight * dpr));
-    const left = X.uzCurtain(tw, th);
-    const right = X.kzCurtain(tw, th);
+    const cv = $("#knot");
+    const ctx = cv.getContext("2d");
+    const medal = $("#knotMedallion");
+    const N = 140; // отрезков в каждой нити
+    const SPLIT = 0.55; // доля нити, которая уходит на шнур; остальное — на кольцо
+    const TURNS = 4.25; // витков шнура; четверть в конце сводит пряди точно к верху кольца
+    const mix = (a, b, k) => a + (b - a) * k;
+    const bez = (a, b, c, d, t) => {
+      const u = 1 - t;
+      return u * u * u * a + 3 * u * u * t * b + 3 * u * t * t * c + t * t * t * d;
+    };
 
-    const drape = GL.curtains(glCanvas, left, right, { still: reduceMotion });
-    if (!drape) {
-      glCanvas.hidden = true;
-      fallback.hidden = false;
-      $(".fb--l", fallback).style.backgroundImage = `url(${left.toDataURL()})`;
-      $(".fb--r", fallback).style.backgroundImage = `url(${right.toDataURL()})`;
+    let W = 0;
+    let H = 0;
+    let cx = 0;
+    let cy = 0;
+    let ring = 0;
+    let w = 0;
+    let p = 0; // 0 — нити висят, 1 — узел завязан
+    let drag = null;
+    let tying = false;
+    let tied = false;
+    let stopped = false;
+    let anim = 0;
+    let raf = 0;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth;
+      H = window.innerHeight;
+      cv.width = Math.round(W * dpr);
+      cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const r = medal.getBoundingClientRect();
+      cx = r.left + r.width / 2;
+      cy = r.top + r.height / 2;
+      w = clamp(W * 0.045, 14, 22);
+      ring = medal.offsetWidth / 2 + 5 + w * 0.7;
     }
 
-    let opened = false;
-    async function open() {
-      if (opened) return;
-      opened = true;
+    // Нить висит свободно: от верхнего края к кисточке и чуть покачивается.
+    function hanging(side, s, time) {
+      const endY = Math.min(H * 0.8, cy + ring + H * 0.2) + p * H * 0.06;
+      const x = bez(cx + side * W * 0.34, cx + side * W * 0.46, cx + side * W * 0.22, cx + side * W * 0.12, s);
+      const y = bez(-w, H * 0.3, endY - H * 0.15, endY, s);
+      const sway = reduceMotion ? 0 : Math.sin(time * 1.1 + side * 1.7 + s * 2) * 7 * s * s;
+      return [x + sway, y];
+    }
+
+    // Свитая нить: пряди вьются друг вокруг друга до верха кольца, затем обходят его навстречу
+    // друг другу, перекручиваясь. Третье число — глубина: кто из прядей сейчас сверху.
+    function braided(side, s) {
+      const phase = side < 0 ? Math.PI : 0;
+      if (s < SPLIT) {
+        const u = s / SPLIT;
+        const th = u * TURNS * 2 * Math.PI + phase;
+        return [cx + Math.cos(th) * w * 0.5, mix(-w, cy - ring, u), Math.sin(th)];
+      }
+      const v = (s - SPLIT) / (1 - SPLIT);
+      const a = -Math.PI / 2 + side * v * 2 * Math.PI;
+      const r = ring + Math.cos(8 * Math.PI * v + phase) * w * 0.45 * clamp(v * 8);
+      return [cx + Math.cos(a) * r, cy + Math.sin(a) * r, Math.sin(8 * Math.PI * v)];
+    }
+
+    function drawCord(cord, pts, from, to) {
+      const path = () => {
+        ctx.beginPath();
+        ctx.moveTo(pts[from][0], pts[from][1]);
+        for (let k = from + 1; k <= to; k++) ctx.lineTo(pts[k][0], pts[k][1]);
+      };
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      path();
+      ctx.strokeStyle = cord.edge;
+      ctx.lineWidth = w;
+      ctx.stroke();
+      ctx.strokeStyle = cord.base;
+      ctx.lineWidth = w * 0.76;
+      ctx.stroke();
+
+      ctx.lineCap = "butt";
+      for (let k = from; k < to; k++) {
+        const color = cord.band(k);
+        if (!color) continue;
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(pts[k][0], pts[k][1]);
+        ctx.lineTo(pts[k + 1][0], pts[k + 1][1]);
+        ctx.stroke();
+      }
+
+      // косые витки, как у кручёного шнура
+      const h = w * 0.36;
+      ctx.strokeStyle = cord.twist;
+      ctx.lineWidth = Math.max(1, w * 0.09);
+      ctx.beginPath();
+      for (let k = from; k < to; k++) {
+        const [x0, y0] = pts[k];
+        const [x1, y1] = pts[k + 1];
+        const len = Math.hypot(x1 - x0, y1 - y0) || 1;
+        const tx = (x1 - x0) / len;
+        const ty = (y1 - y0) / len;
+        ctx.moveTo(x0 - ty * h - tx * h * 0.6, y0 + tx * h - ty * h * 0.6);
+        ctx.lineTo(x0 + ty * h + tx * h * 0.6, y0 - tx * h + ty * h * 0.6);
+      }
+      ctx.stroke();
+
+      // блик шёлка
+      ctx.save();
+      ctx.translate(-w * 0.16, -w * 0.06);
+      path();
+      ctx.lineCap = "round";
+      ctx.strokeStyle = "rgba(255, 255, 255, .28)";
+      ctx.lineWidth = w * 0.18;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Рисуем куски нити только одного слоя: сначала задние, потом передние —
+    // так пряди проходят одна над другой.
+    function drawLayer(cord, pts, front) {
+      let start = -1;
+      for (let k = 0; k <= N; k++) {
+        const inLayer = k < N && (pts[k][2] + pts[k + 1][2] >= 0) === front;
+        if (inLayer && start < 0) start = k;
+        if (!inLayer && start >= 0) {
+          drawCord(cord, pts, start, k);
+          start = -1;
+        }
+      }
+    }
+
+    // Кисточка на конце: золотая головка и бахрома. Пока узел не начат, вокруг неё пульсирует свет.
+    function drawTassel(cord, pts, time) {
+      const alpha = 1 - clamp(p * 2.2);
+      if (alpha <= 0) return;
+      const [x, y] = pts[N];
+      const [px, py] = pts[N - 2];
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(x, y);
+      ctx.rotate(Math.atan2(y - py, x - px) - Math.PI / 2);
+
+      const pulse = reduceMotion ? 0.5 : (Math.sin(time * 3 + cord.side) + 1) / 2;
+      ctx.strokeStyle = `rgba(242, 212, 137, ${0.25 + pulse * 0.4})`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(0, w * 1.1, w * (1.6 + pulse * 0.35), 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.lineCap = "round";
+      ctx.lineWidth = 1.6;
+      for (let i = 0; i < 14; i++) {
+        const f = i / 13 - 0.5;
+        const swing = reduceMotion ? 0 : Math.sin(time * 2 + i) * 1.5;
+        ctx.strokeStyle = i % 3 === 0 ? cord.base : "#E9C46A";
+        ctx.beginPath();
+        ctx.moveTo(f * w * 0.7, w * 0.3);
+        ctx.quadraticCurveTo(f * w * 1.1, w * 1.4, f * w * 1.4 + swing, w * 2.6);
+        ctx.stroke();
+      }
+      const g = ctx.createRadialGradient(-w * 0.15, w * 0.05, 1, 0, w * 0.2, w * 0.62);
+      g.addColorStop(0, "#FFF1C1");
+      g.addColorStop(0.5, "#E2B24F");
+      g.addColorStop(1, "#8A6420");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.ellipse(0, w * 0.2, w * 0.55, w * 0.62, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function frame(now) {
+      if (stopped) return;
+      const time = now / 1000;
+      ctx.clearRect(0, 0, W, H);
+      const strands = CORDS.map((cord) => {
+        const pts = [];
+        for (let k = 0; k <= N; k++) {
+          const s = k / N;
+          // верх нитей свивается раньше, кольцо замыкается последним
+          const e = ease(clamp(p * 1.5 - s * 0.5));
+          const a = hanging(cord.side, s, time);
+          const b = braided(cord.side, s);
+          pts.push([mix(a[0], b[0], e), mix(a[1], b[1], e), b[2] * e]);
+        }
+        return { cord, pts };
+      });
+      strands.forEach(({ cord, pts }) => drawLayer(cord, pts, false));
+      strands.forEach(({ cord, pts }) => drawLayer(cord, pts, true));
+      strands.forEach(({ cord, pts }) => drawTassel(cord, pts, time));
+      raf = requestAnimationFrame(frame);
+    }
+
+    function animateTo(target, ms) {
+      const from = p;
+      const t0 = performance.now();
+      const id = ++anim;
+      return new Promise((resolve) => {
+        const step = (now) => {
+          if (id !== anim) return resolve(false);
+          const k = reduceMotion ? 1 : clamp((now - t0) / ms);
+          p = mix(from, target, ease(k));
+          if (k < 1) requestAnimationFrame(step);
+          else resolve(true);
+        };
+        requestAnimationFrame(step);
+      });
+    }
+
+    async function tie() {
+      if (tying) return;
+      tying = true;
+      stage.classList.add("is-pulling");
+      if (await animateTo(1, 300 + 1900 * (1 - p))) finish();
+    }
+
+    async function finish() {
+      if (tied) return;
+      tied = true;
+      tying = true;
+      anim++;
+      p = 1;
+      drag = null;
+      stage.classList.add("is-pulling", "is-tied");
       vibrate([12, 40, 18]);
-      stage.classList.add("is-opening");
       atlas.setActive(true);
 
-      const dur = reduceMotion ? 300 : 2800;
-      setTimeout(() => shashu.rain(80), dur * 0.2);
-      setTimeout(() => {
-        $("#hero").classList.add("is-in");
-        $("#heroArch").classList.add("is-drawn");
-      }, dur * 0.35);
-
-      if (drape) {
-        const t0 = performance.now();
-        await new Promise((resolve) => {
-          const step = (now) => {
-            const k = clamp((now - t0) / dur);
-            drape.setOpen(ease(k));
-            if (k < 1) requestAnimationFrame(step);
-            else resolve();
-          };
-          requestAnimationFrame(step);
-        });
-      } else {
-        fallback.classList.add("is-open");
-        await wait(1800);
-      }
+      await wait(900);
+      shashu.rain(80);
+      stage.classList.add("is-opening");
+      await wait(450);
+      $("#hero").classList.add("is-in");
+      $("#heroArch").classList.add("is-drawn");
+      await wait(800);
 
       stage.classList.add("is-gone");
       document.body.classList.remove("is-locked");
       hideScrollHintOnScroll();
       setTimeout(() => {
-        drape?.destroy();
+        stopped = true;
+        cancelAnimationFrame(raf);
+        window.removeEventListener("resize", resize);
         stage.remove();
       }, 800);
     }
 
-    stage.addEventListener("click", open);
+    // Протянуть вниз примерно на треть экрана — узел завяжется. Отпустить раньше — нити
+    // вернутся, если не протянуты хотя бы на треть пути. Простое касание тоже завязывает узел.
+    stage.addEventListener("pointerdown", (e) => {
+      if (tying) return;
+      drag = { y: e.clientY, from: p, moved: false };
+      anim++;
+      stage.setPointerCapture?.(e.pointerId);
+    });
+    stage.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      const dy = e.clientY - drag.y;
+      if (Math.abs(dy) > 6) {
+        drag.moved = true;
+        stage.classList.add("is-pulling");
+      }
+      p = clamp(drag.from + dy / (H * 0.3));
+      if (p >= 1) finish();
+    });
+    const release = () => {
+      if (!drag) return;
+      const { moved } = drag;
+      drag = null;
+      if (!moved || p > 0.3) tie();
+      else {
+        stage.classList.remove("is-pulling");
+        animateTo(0, 350);
+      }
+    };
+    stage.addEventListener("pointerup", release);
+    stage.addEventListener("pointercancel", release);
+    $("#openBtn").addEventListener("click", tie);
+
+    resize();
+    window.addEventListener("resize", resize);
+    raf = requestAnimationFrame(frame);
   }
 
   // Стрелка «листайте вниз» исчезает, как только гость начал прокручивать.
@@ -993,7 +1230,6 @@
   buildStatic();
   buildArches();
   buildOrnamentDividers();
-  buildFeltBorders();
   buildSuzani();
   setupSteppe();
   render();
@@ -1002,6 +1238,6 @@
   setupRibbons(X.ribbonTexture(tile));
   const atlas = setupAtlas(tile);
   music.init();
-  setupCurtains(atlas);
+  setupKnot(atlas);
   setupRsvp();
 })();

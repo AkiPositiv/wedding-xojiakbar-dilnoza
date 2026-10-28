@@ -28,20 +28,13 @@
 
   <nav class="lang" id="lang" data-i18n-aria="langSwitch"></nav>
 
-  <!-- Вход: занавес из флагов Узбекистана и Казахстана -->
+  <!-- Вход: две нити — узбекский атлас и казахский орнамент — сплетаются в узел-медальон -->
   <div class="stage" id="stage">
-    <canvas class="stage__gl" id="curtains" aria-hidden="true"></canvas>
-    <div class="stage__fallback" id="curtainFallback" aria-hidden="true" hidden>
-      <div class="fb fb--l"></div>
-      <div class="fb fb--r"></div>
+    <canvas class="stage__knot" id="knot" aria-hidden="true"></canvas>
+    <div class="medallion stage__medallion" id="knotMedallion" aria-hidden="true">
+      <span class="medallion__mono" data-bind="initials"></span>
     </div>
-    <div class="stage__rod" aria-hidden="true"></div>
-    <div class="stage__center">
-      <button class="medallion" id="openBtn" type="button" data-i18n-aria="openCurtain">
-        <span class="medallion__mono" data-bind="initials"></span>
-      </button>
-      <p class="stage__hint" data-i18n="hint"></p>
-    </div>
+    <button class="stage__hint" id="openBtn" type="button" data-i18n="hint"></button>
   </div>
 
   <canvas class="shashu" id="shashu" aria-hidden="true"></canvas>
@@ -111,7 +104,10 @@
           </div>
         </div>
 
-        <a class="btn btn--ghost reveal" id="addToCalendar" href="#" target="_blank" rel="noopener" data-i18n="addToCalendar"></a>
+        <div class="cal-links reveal">
+          <a class="btn btn--ghost" id="addToCalendar" href="#" target="_blank" rel="noopener" data-i18n="addToCalendar"></a>
+          <a class="btn btn--ghost" id="remindBefore" href="#" target="_blank" rel="noopener" data-i18n="remindBefore"></a>
+        </div>
       </div>
     </section>
 
@@ -154,20 +150,10 @@
       <h2 class="block__title" data-i18n="placeTitle"></h2>
       <p class="venue__name reveal" data-bind="venue.name"></p>
       <p class="prose reveal" data-bind="venue.address"></p>
-      <a class="btn reveal" id="mapLink" href="#" target="_blank" rel="noopener" data-i18n="openMap"></a>
-    </section>
-
-    <div class="divider divider--ribbon" aria-hidden="true"></div>
-
-    <!-- Пожелания: казахская кошма -->
-    <section class="block block--felt" id="wishes">
-      <div class="felt-border felt-border--top ink" aria-hidden="true"></div>
-      <h2 class="block__title" data-i18n="wishesTitle"></h2>
-      <div class="wish reveal">
-        <h3 class="wish__title" data-i18n="presenceTitle"></h3>
-        <p class="prose" data-i18n="presenceText"></p>
+      <div class="map reveal">
+        <iframe class="map__frame" id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-i18n-aria="placeTitle"></iframe>
       </div>
-      <div class="felt-border felt-border--bottom ink" aria-hidden="true"></div>
+      <a class="btn reveal" id="mapLink" href="#" target="_blank" rel="noopener" data-i18n="openMap"></a>
     </section>
 
     <div class="divider divider--ornament ink" aria-hidden="true"></div>

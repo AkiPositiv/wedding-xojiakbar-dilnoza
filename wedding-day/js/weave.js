@@ -1,5 +1,5 @@
-// WebGL-ткани: занавес из двух флагов и колышущийся атлас.
-// Если WebGL недоступен, функции возвращают null — тогда main.js показывает CSS-запасной вариант.
+// WebGL-ткань: колышущийся атлас.
+// Если WebGL недоступен, функция возвращает null.
 window.Weave = (() => {
   "use strict";
 
@@ -9,53 +9,6 @@ window.Weave = (() => {
     void main() {
       vUv = vec2(p.x * 0.5 + 0.5, 0.5 - p.y * 0.5);
       gl_Position = vec4(p, 0.0, 1.0);
-    }`;
-
-  // Две половины занавеса. uOpen: 0 — закрыт, 1 — собран у краёв и подхвачен.
-  const CURTAIN = `
-    precision mediump float;
-    varying vec2 vUv;
-    uniform sampler2D uL;
-    uniform sampler2D uR;
-    uniform float uTime;
-    uniform float uOpen;
-
-    float pleat(float u, float v, float g) {
-      float f = 6.0 + g * 3.0;
-      float wind = sin(v * 2.6 - uTime * 0.8) * 0.6 + sin(v * 6.5 + uTime * 1.4) * 0.25;
-      return sin(u * f * 6.2832 + wind * (1.0 - g * 0.6) + uTime * 0.35);
-    }
-
-    vec4 drape(sampler2D tex, float u, float v, float g, float side) {
-      float f = 6.0 + g * 3.0;
-      float amp = 0.35 + g * 0.65;
-      float e = 0.0015;
-      float h = pleat(u, v, g) * amp;
-      float slope = (pleat(u + e, v, g) - pleat(u - e, v, g)) / (2.0 * e) / (f * 6.2832) * amp;
-      vec2 tc = clamp(vec2(u + h * 0.006, v + h * 0.004), 0.001, 0.999);
-      vec3 col = texture2D(tex, tc).rgb;
-      float light = 0.86 + slope * 0.24 + h * 0.06;
-      float sheen = pow(max(slope, 0.0), 3.0) * 0.35;
-      float inner = mix(u, 1.0 - u, side);                 // расстояние до шва
-      float shadow = mix(0.68, 1.0, smoothstep(0.0, 0.07, inner));
-      shadow *= mix(0.72, 1.0, smoothstep(0.0, 0.06, v));  // тень под карнизом
-      return vec4(col * light * shadow + sheen, 1.0);
-    }
-
-    void main() {
-      float x = vUv.x;
-      float v = vUv.y;
-      float g = uOpen;
-      // открытый занавес подхвачен на высоте ~62%: там он уже, ниже снова расходится
-      float pinch = 1.0 - 0.32 * g * exp(-pow((v - 0.62) * 4.5, 2.0));
-      float w = mix(0.503, 0.08, g) * pinch;
-      if (x < w) {
-        gl_FragColor = drape(uL, x / w, v, g, 1.0);
-      } else if (x > 1.0 - w) {
-        gl_FragColor = drape(uR, (x - (1.0 - w)) / w, v, g, 0.0);
-      } else {
-        gl_FragColor = vec4(0.0);
-      }
     }`;
 
   // Шёлковый атлас, за которым дует ветер: волны смещают узор и дают блик.
@@ -169,40 +122,6 @@ window.Weave = (() => {
     };
   }
 
-  function curtains(canvas, left, right, { still = false } = {}) {
-    let ctx;
-    try {
-      ctx = setup(canvas, CURTAIN);
-    } catch {
-      return null;
-    }
-    if (!ctx) return null;
-    const { gl, u } = ctx;
-    texture(gl, 0, left, false);
-    texture(gl, 1, right, false);
-    gl.uniform1i(u("uL"), 0);
-    gl.uniform1i(u("uR"), 1);
-    const uTime = u("uTime");
-    const uOpen = u("uOpen");
-    let open = 0;
-    const l = loop(canvas, gl, {
-      scale: 1,
-      still,
-      onFrame(t) {
-        gl.uniform1f(uTime, t);
-        gl.uniform1f(uOpen, open);
-      },
-    });
-    l.setActive(true);
-    return {
-      setOpen(v) {
-        open = v;
-        if (still) l.redraw();
-      },
-      destroy: l.destroy,
-    };
-  }
-
   function fabric(canvas, tile, { tileCss = 150, still = false } = {}) {
     let ctx;
     try {
@@ -229,5 +148,5 @@ window.Weave = (() => {
     });
   }
 
-  return { curtains, fabric };
+  return { fabric };
 })();
