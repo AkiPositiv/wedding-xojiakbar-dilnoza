@@ -893,6 +893,7 @@
 
       stage.classList.add("is-gone");
       document.body.classList.remove("is-locked");
+      hideScrollHintOnScroll();
       setTimeout(() => {
         drape?.destroy();
         stage.remove();
@@ -900,6 +901,17 @@
     }
 
     stage.addEventListener("click", open);
+  }
+
+  // Стрелка «листайте вниз» исчезает, как только гость начал прокручивать.
+  function hideScrollHintOnScroll() {
+    const hint = $("#heroScroll");
+    const onScroll = () => {
+      if (window.scrollY < 40) return;
+      hint.classList.add("is-hidden");
+      window.removeEventListener("scroll", onScroll);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 
   /* ---------- Анкета ---------- */

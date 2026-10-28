@@ -298,7 +298,7 @@ a { color: inherit; }
   place-items: center;
   min-height: 100vh;
   min-height: 100svh;
-  padding: 4.5rem 1rem 4rem;
+  padding: 4.5rem 1rem 7rem;
   overflow: hidden;
   background: #8E1031;
 }
@@ -395,28 +395,64 @@ a { color: inherit; }
 
 @keyframes amp-in { to { opacity: 1; transform: none; } }
 
+/* Подсказка «листайте вниз»: появляется после имён и даты, исчезает при прокрутке */
 .hero__scroll {
-  position: absolute;
-  bottom: 1.6rem;
+  position: fixed;
+  /* выше кнопки музыки, чтобы на узких экранах они не наезжали друг на друга */
+  bottom: calc(4.9rem + env(safe-area-inset-bottom));
   left: 50%;
-  width: 1px;
-  height: 2.6rem;
-  overflow: hidden;
-  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .1rem;
+  padding: .6rem 1.2rem .35rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: rgba(14, 21, 56, .85);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .35);
+  color: var(--gold-light);
+  white-space: nowrap;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, .6rem);
+  transition: opacity .8s ease, transform .8s var(--ease-out);
 }
 
-.hero__scroll::after { content: ""; position: absolute; inset: -.75rem; }
-
-.hero__scroll span {
-  position: absolute;
-  inset: 0;
-  background: var(--gold-light);
-  animation: scroll-line 2.4s ease-in-out infinite;
+.hero.is-in .hero__scroll {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+  transition-delay: 4.3s;
 }
 
-@keyframes scroll-line {
-  0% { transform: translateY(-100%); }
-  60%, 100% { transform: translateY(100%); }
+.hero.is-in .hero__scroll.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0s;
+}
+
+.hero__scroll-text {
+  font-size: .78rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.hero__scroll-arrow {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: none;
+  stroke: var(--gold-light);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: scroll-bob 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(.3rem); }
 }
 
 /* ---------- Разделители ---------- */

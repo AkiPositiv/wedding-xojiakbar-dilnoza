@@ -72,7 +72,10 @@
           <p class="hero__city" data-bind="city"></p>
         </div>
       </div>
-      <a class="hero__scroll" href="#invite" data-i18n-aria="scrollMore"><span></span></a>
+      <a class="hero__scroll" id="heroScroll" href="#invite" data-i18n-aria="scrollMore">
+        <span class="hero__scroll-text" data-i18n="scrollMore"></span>
+        <svg class="hero__scroll-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+      </a>
     </header>
 
     <div class="divider divider--ribbon" aria-hidden="true"></div>
