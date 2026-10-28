@@ -853,12 +853,12 @@
   ];
 
   // Гость тянет за кисточку вниз (или просто касается): нити свиваются в шнур,
-  // шнур обвивает круг, и внутри кольца проявляется медальон с инициалами.
+  // шнур обвивает круг, и внутри него сцепляются два обручальных кольца.
   function setupKnot(atlas) {
     const stage = $("#stage");
     const cv = $("#knot");
     const ctx = cv.getContext("2d");
-    const medal = $("#knotMedallion");
+    const medal = $("#knotRings");
     const N = 140; // отрезков в каждой нити
     const SPLIT = 0.55; // доля нити, которая уходит на шнур; остальное — на кольцо
     const TURNS = 4.25; // витков шнура; четверть в конце сводит пряди точно к верху кольца
@@ -1084,7 +1084,7 @@
       vibrate([12, 40, 18]);
       atlas.setActive(true);
 
-      await wait(900);
+      await wait(1600);
       shashu.rain(80);
       stage.classList.add("is-opening");
       await wait(450);

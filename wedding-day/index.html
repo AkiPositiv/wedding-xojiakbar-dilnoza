@@ -28,11 +28,35 @@
 
   <nav class="lang" id="lang" data-i18n-aria="langSwitch"></nav>
 
-  <!-- Вход: две нити — узбекский атлас и казахский орнамент — сплетаются в узел-медальон -->
+  <!-- Вход: две нити — узбекский атлас и казахский орнамент — сплетаются в узел, внутри — кольца -->
   <div class="stage" id="stage">
     <canvas class="stage__knot" id="knot" aria-hidden="true"></canvas>
-    <div class="medallion stage__medallion" id="knotMedallion" aria-hidden="true">
-      <span class="medallion__mono" data-bind="initials"></span>
+    <div class="stage__rings" id="knotRings" aria-hidden="true">
+      <svg viewBox="16 18 66 66">
+        <defs>
+          <linearGradient id="goldRing" gradientUnits="userSpaceOnUse" x1="23" y1="39" x2="57" y2="73">
+            <stop offset="0" stop-color="#FFF1C1"/>
+            <stop offset=".45" stop-color="#E2B24F"/>
+            <stop offset="1" stop-color="#8A6420"/>
+          </linearGradient>
+          <linearGradient id="roseRing" gradientUnits="userSpaceOnUse" x1="45" y1="37" x2="75" y2="67">
+            <stop offset="0" stop-color="#FBE0D4"/>
+            <stop offset=".45" stop-color="#D99A83"/>
+            <stop offset="1" stop-color="#8E5543"/>
+          </linearGradient>
+        </defs>
+        <!-- мужское кольцо: широкое, жёлтое золото -->
+        <g class="ring ring--groom"><circle cx="40" cy="56" r="17" fill="none" stroke="url(#goldRing)" stroke-width="5.5"/></g>
+        <!-- женское кольцо: тоньше, розовое золото, с бриллиантом -->
+        <g class="ring ring--bride">
+          <circle cx="60" cy="52" r="15" fill="none" stroke="url(#roseRing)" stroke-width="3.6"/>
+          <path d="M56.5 33 L63.5 33 L65.5 36 L60 41.5 L54.5 36 Z" fill="#EAF6FF" stroke="#9FC3DA" stroke-width=".8" stroke-linejoin="round"/>
+          <path d="M54.5 36 H65.5 M58 33 L60 41.5 L62 33" fill="none" stroke="#9FC3DA" stroke-width=".5"/>
+          <path class="ring__spark" d="M60 24 L61.2 28.8 L66 30 L61.2 31.2 L60 36 L58.8 31.2 L54 30 L58.8 28.8 Z" fill="#FFFFFF"/>
+        </g>
+        <!-- кусочек мужского кольца поверх женского: так кольца сцеплены, а не лежат друг на друге -->
+        <g class="ring ring--groom"><path d="M55.97 61.81 A17 17 0 0 1 50.93 69.02" fill="none" stroke="url(#goldRing)" stroke-width="5.5"/></g>
+      </svg>
     </div>
     <button class="stage__hint" id="openBtn" type="button" data-i18n="hint"></button>
   </div>
