@@ -77,7 +77,6 @@
       Weekday: capitalize(weekday),
       time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
       monthYear: L.formatMonth(month, year, L),
-      deadline: tr(C.rsvpDeadline),
       "venue.name": tr(C.venue.name),
       "venue.address": tr(C.venue.address),
     };

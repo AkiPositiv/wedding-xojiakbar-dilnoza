@@ -70,9 +70,6 @@ window.WEDDING = {
     },
   ],
 
-  // Срок ответа. Для узбекского и казахского — в форме, к которой добавится «до»:
-  // uz: «15-noyabr» → «15-noyabrgacha», kk: «15 қарашаға» → «15 қарашаға дейін».
-  rsvpDeadline: { ru: "15 ноября", uz: "15-noyabr", kk: "15 қарашаға" },
   // URL веб-приложения Google Apps Script (см. google-apps-script/НАСТРОЙКА.md). Пусто — анкета в демо-режиме.
   rsvpEndpoint: "https://script.google.com/macros/s/AKfycby9GkCSEzWhNhQNoj922mevd09tSYK-N0wl-kY2nA-wgQls6jBHkhHgtyLeymZrdMlSqg/exec",
 

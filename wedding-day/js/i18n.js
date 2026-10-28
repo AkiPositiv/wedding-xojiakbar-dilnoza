@@ -51,7 +51,7 @@ window.I18N = {
 
 
     rsvpTitle: "Анкета гостя",
-    rsvpIntro: "Пожалуйста, ответьте до {deadline} — так нам будет проще всё подготовить.",
+    rsvpIntro: "Будем рады Вашему ответу — так нам будет проще всё подготовить.",
     fieldName: "Ваше имя и фамилия",
     nameError: "Напишите, пожалуйста, Ваше имя",
     fieldAttend: "Сможете прийти?",
@@ -123,7 +123,7 @@ window.I18N = {
 
 
     rsvpTitle: "Mehmon anketasi",
-    rsvpIntro: "Iltimos, {deadline}gacha javob bering — shunda hammasini tayyorlash bizga osonroq boʻladi.",
+    rsvpIntro: "Javobingizdan xursand boʻlamiz — shunda hammasini tayyorlash bizga osonroq boʻladi.",
     fieldName: "Ismingiz va familiyangiz",
     nameError: "Iltimos, ismingizni yozing",
     fieldAttend: "Kela olasizmi?",
@@ -195,7 +195,7 @@ window.I18N = {
 
 
     rsvpTitle: "Қонақ сауалнамасы",
-    rsvpIntro: "Өтінеміз, {deadline} дейін жауап беріңіз — осылайша бәрін дайындау бізге оңайырақ болады.",
+    rsvpIntro: "Жауабыңызға қуанамыз — осылайша бәрін дайындау бізге оңайырақ болады.",
     fieldName: "Аты-жөніңіз",
     nameError: "Өтінеміз, атыңызды жазыңыз",
     fieldAttend: "Келе аласыз ба?",
