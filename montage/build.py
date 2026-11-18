@@ -126,7 +126,7 @@ def add_music(video, dst):
         return
     total = duration(video)
     inputs = ["-i", video, "-i", main]
-    a_main = (f"[1:a]atrim={MAIN_SRC}:{MAIN_SRC + total},asetpts=PTS-STARTPTS,afade=t=in:d=2,"
+    a_main = (f"[1:a]atrim={MAIN_SRC}:{MAIN_SRC + total},asetpts=PTS-STARTPTS,apad,atrim=0:{total},afade=t=in:d=2,"
               f"afade=t=out:st={max(total - FADE, 0):.2f}:d={FADE}")
     if os.path.exists(chorus) and total > CHORUS_AT + 5:
         inputs += ["-i", chorus]
@@ -140,7 +140,7 @@ def add_music(video, dst):
         a_main += "[a]"
     run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", a_main,
          "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k",
-         "-shortest", dst])
+         "-t", f"{total:.3f}", dst])
 
 
 def main():
