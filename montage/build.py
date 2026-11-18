@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Черновой монтаж фильма «Красная нить».
 
-Читает montage/edl.txt (порядок клипов, обрезка, эпохи), собирает видео
-1920x1080 30fps: внутри эпохи — простая склейка, между эпохами — растворение.
+Читает montage/edl.txt (порядок клипов, обрезка), собирает видео
+1920x1080 30fps с плавным затуханием между всеми клипами.
 Если есть музыка — подкладывает её с затуханием. В конце — реальные фото
 (по 1.5 с с лёгким приближением), если папка с фото не пуста.
 
 Запуск:  python3 montage/build.py
 Папки:   film/clips/  — клипы (*.mp4)
-         film/music/  — main.mp3 (Heart of Courage), chorus.mp3 (A Thousand Years, необязательно)
+         film/music/  — main.mp3 (один трек на весь фильм), chorus.mp3 (наложение припева, необязательно)
          film/photos/ — реальные фото для финала (*.jpg/*.png), необязательно
 Результат: film/out/draft.mp4
 """
@@ -26,7 +26,7 @@ TMP = os.path.join(OUT, "tmp")
 EDL = os.path.join(ROOT, "montage", "edl.txt")
 
 W, H, FPS = 1920, 1080, 30
-XFADE = 0.6          # растворение между эпохами, сек
+XFADE = float(os.environ.get("XFADE", 0.7))  # затухание между всеми клипами, сек
 PHOTO_SEC = 1.5      # длительность одного фото в финале
 CHORUS_AT = 110.0    # припев «A Thousand Years» с 1:50 фильма
 CHORUS_LEN = 45.0    # до 2:35
@@ -145,9 +145,8 @@ def add_music(video, dst):
 
 def main():
     os.makedirs(TMP, exist_ok=True)
-    era_files, missing = [], []
+    era_files, missing = [], []  # era_files: все клипы подряд, затухание между каждым
     for idx, (era, items) in enumerate(read_edl()):
-        normed = []
         for name, start, end in items:
             src = os.path.join(CLIPS, name + ".mp4")
             if not os.path.exists(src):
@@ -155,11 +154,7 @@ def main():
                 continue
             dst = os.path.join(TMP, name + ".mp4")
             norm(src, dst, start, end)
-            normed.append(dst)
-        if normed:
-            ef = os.path.join(TMP, f"era_{idx:02d}.mp4")
-            concat(normed, ef)
-            era_files.append(ef)
+            era_files.append(dst)
 
     photos = sorted(p for p in os.listdir(PHOTOS)
                     if p.lower().endswith((".jpg", ".jpeg", ".png", ".webp"))) if os.path.isdir(PHOTOS) else []
