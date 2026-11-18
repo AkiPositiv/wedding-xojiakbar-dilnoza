@@ -28,8 +28,10 @@ EDL = os.path.join(ROOT, "montage", "edl.txt")
 W, H, FPS = 1920, 1080, 30
 XFADE = 0.6          # растворение между эпохами, сек
 PHOTO_SEC = 1.5      # длительность одного фото в финале
-CHORUS_AT = 110.0    # припев «A Thousand Years» с 1:50
+CHORUS_AT = 110.0    # припев «A Thousand Years» с 1:50 фильма
 CHORUS_LEN = 45.0    # до 2:35
+CHORUS_SRC = float(os.environ.get("CHORUS_SRC", 55))  # с какой секунды песни брать припев
+MAIN_SRC = float(os.environ.get("MAIN_SRC", 0))       # с какой секунды брать основной трек
 FADE = 5.0           # затухание музыки, сек
 
 
@@ -124,14 +126,14 @@ def add_music(video, dst):
         return
     total = duration(video)
     inputs = ["-i", video, "-i", main]
-    a_main = (f"[1:a]atrim=0:{total},asetpts=PTS-STARTPTS,afade=t=in:d=2,"
+    a_main = (f"[1:a]atrim={MAIN_SRC}:{MAIN_SRC + total},asetpts=PTS-STARTPTS,afade=t=in:d=2,"
               f"afade=t=out:st={max(total - FADE, 0):.2f}:d={FADE}")
     if os.path.exists(chorus) and total > CHORUS_AT + 5:
         inputs += ["-i", chorus]
         clen = min(CHORUS_LEN, total - CHORUS_AT)
         # основной трек приглушаем на время припева
         a_main += (f",volume='if(between(t,{CHORUS_AT},{CHORUS_AT + clen}),0.25,1)':eval=frame[m];"
-                   f"[2:a]atrim=0:{clen},asetpts=PTS-STARTPTS,afade=t=in:d={FADE},"
+                   f"[2:a]atrim={CHORUS_SRC}:{CHORUS_SRC + clen},asetpts=PTS-STARTPTS,afade=t=in:d={FADE},"
                    f"afade=t=out:st={clen - FADE:.2f}:d={FADE},adelay={int(CHORUS_AT * 1000)}:all=1[c];"
                    f"[m][c]amix=inputs=2:duration=first:normalize=0[a]")
     else:

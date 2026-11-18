@@ -1,78 +1,80 @@
 # Монтажный лист. Формат строки:  имя_клипа  [начало]  [конец]   (секунды, "-" = не резать)
 # [Эпоха] — между эпохами растворение, внутри — простая склейка.
 # Клипы лежат в film/clips/<имя>.mp4
+# Обрезка выбрана по таймингу промптов (берём момент с главным действием), ~4–5 с на клип,
+# чтобы фильм совпал по длине с «Heart of Courage» (3:13).
 
 [Пролог]
-00_1_Kosmos
-00_2_Nit
+00_1_Kosmos      0.5  4.5
+00_2_Nit         0.5  4.5
 
 [Эдем]
-01_1_On_vidit
-01_2_Yabloko
-01_3_Vihr
+01_1_On_vidit    1    5
+01_2_Yabloko     0.5  4.5
+01_3_Vihr        0.5  4.5
 
 [Динозавры]
-02_1_Geroy
-02_2_Cvetok
-02_3_Trex
+02_1_Geroy       2    6
+02_2_Cvetok      1    5
+02_3_Trex        2    7
 
 [Сверчки]
-03_1_Serenada
-03_2_Slushaet
-03_3_Plyuh
+03_1_Serenada    2    6
+03_2_Slushaet    2    6
+03_3_Plyuh       2    7
 
 [Египет]
-04_1_Zodchiy
-04_2_Princessa
-04_3_Lotos
+04_1_Zodchiy     3    7
+04_2_Princessa   2    7
+04_3_Lotos       0    4
 
 [Рим]
-05_1_Gladiator
-05_2_Plashch
-05_3_Reshetka
+05_1_Gladiator   2    6
+05_2_Plashch     2    6
+05_3_Reshetka    2    7
 
 [Самарканд]
-06_1_Astronom
-06_2_Vzglyady
-06_3_Lenta
+06_1_Astronom    2    6
+06_2_Vzglyady    2    7
+06_3_Lenta       2    6
 
 [Япония]
-07_1_Samuray
-07_2_Nindzya
-07_3_Pod_maskoy
-07_4_Dym
+07_1_Samuray     2    6
+07_2_Nindzya     1    5
+07_3_Pod_maskoy  1    6
+07_4_Dym         1    5
 
 [Титаник]
-08_1_Posadka
-08_2_Paluba
-08_3_Roza
-08_4_Dver
+08_1_Posadka     1    5
+08_2_Paluba      1    6
+08_3_Roza        0.5  4.5
+08_4_Dver        1    5
 
 [1941]
-09_1_Eshelon
-09_2_Ona_bezhit
-09_3_Ruki
-09_4_Palcy
+09_1_Eshelon     2    6
+09_2_Ona_bezhit  1    5
+09_3_Ruki        1    6
+09_4_Palcy       1    5
 
 [Берлин]
-10_1_Stena
-10_2_Na_stene
-10_3_Tolpa
+10_1_Stena       2    6
+10_2_Na_stene    1    6
+10_3_Tolpa       1    5
 
 [Аниме]
-11_1_Tashkent
-11_2_Dva_poezda
-11_3_Poezda
-11_4_Perehod
+11_1_Tashkent    1    5
+11_2_Dva_poezda  1    5
+11_3_Poezda      1    5
+11_4_Perehod     -    -
 
 [Наше время]
-12_1_On_na_uroke
-12_2_Ona_na_uroke
-12_3_Uchitelskaya
-12_4_Tennis
-12_5_Basketbol
-12_6_Igra
-12_7_Komanda
+12_1_On_na_uroke    2  6
+12_2_Ona_na_uroke   2  6
+12_3_Uchitelskaya   1  5
+12_4_Tennis         2  6
+12_5_Basketbol      2  7
+12_6_Igra           1  5
+12_7_Komanda        1  5
 
 [Финал]
-13_1_Nit
+13_1_Nit         -    -
