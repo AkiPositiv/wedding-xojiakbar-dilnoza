@@ -3,22 +3,59 @@
 Персонажи Higgsfield: Xojiakbar `a8a2fc55-222c-40f7-91ff-0f9e3e46e48b`, Dilnoza `a830463a-8d9c-44c1-9998-59fb4e70dbbb`.
 Референсы лиц (одобренные портреты): `489df9eb-129a-459c-9388-e1e665df8025` (он), `c876d20e-e5de-44dd-8fcc-5dbb039ead41` (она).
 
-## Клипы (Seedance 2.0, 720p std, без звука; 0.x–1.x по 5 сек)
+## Клипы (720p, без звука; std = Seedance 2.0 стандарт, fast = Seedance 2.0 быстрый, mini = Seedance 2.0 Mini)
 
-| Кадр | Статус | Ссылка |
+Все 47 клипов готовы.
+
+| Кадр | Режим | Ссылка |
 |---|---|---|
-| 0.1 Космос | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183141_ecfccf57-9741-44de-b66f-5f3567a98c6c.mp4) |
-| 0.2 Нить падает на Землю | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_a6170e61-dcbe-4888-a27c-921c83f6ed68.mp4) |
-| 1.1 Он видит её | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_102f083e-7ecc-4d5d-bccf-50362a237059.mp4) |
-| 1.2 Яблоко | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_566dbaeb-469b-49cd-adcb-f1c1380f6840.mp4) |
-| 1.3 Вихрь времени | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_48b94b40-d91b-4a6b-8b6f-064b567d53dc.mp4) |
-| 2.1 Герой каменного века (6 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_a054500b-c6fc-48ff-a305-019c0a149d0e.mp4) |
-| 2.2 Цветок (7 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_b2164d6c-294f-4175-aced-2128ff2913df.mp4) |
-| 2.3 Тираннозавр (8 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_b4b7b3ef-4644-42bc-a30a-5f5d6834e5f1.mp4) |
-| 3.1 Серенада (6 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_6321a04a-ea4b-4f3f-baf0-58571524f383.mp4) |
-| 3.2 Она слушает (6 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_19ee0a9a-1293-40bb-83b3-0fc34357caac.mp4) |
-| 3.3 Плюх! (7 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_295af33c-ca27-4372-9b5a-f31a5dab6467.mp4) |
-| 4.1 Зодчий (7 с, тест Seedance 2.0 Mini) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191035_7b1b0910-d5c9-41fd-83b3-b9ca32c4d812.mp4) |
+| 0.1 Космос | std 5с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183141_ecfccf57-9741-44de-b66f-5f3567a98c6c.mp4) |
+| 0.2 Нить падает на Землю | std 5с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_a6170e61-dcbe-4888-a27c-921c83f6ed68.mp4) |
+| 1.1 Он видит её | std 5с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_102f083e-7ecc-4d5d-bccf-50362a237059.mp4) |
+| 1.2 Яблоко | std 5с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_566dbaeb-469b-49cd-adcb-f1c1380f6840.mp4) |
+| 1.3 Вихрь времени | std 5с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_48b94b40-d91b-4a6b-8b6f-064b567d53dc.mp4) |
+| 2.1 Герой каменного века | std 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_a054500b-c6fc-48ff-a305-019c0a149d0e.mp4) |
+| 2.2 Цветок | std 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_b2164d6c-294f-4175-aced-2128ff2913df.mp4) |
+| 2.3 Тираннозавр | std 8с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_b4b7b3ef-4644-42bc-a30a-5f5d6834e5f1.mp4) |
+| 3.1 Серенада | std 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_6321a04a-ea4b-4f3f-baf0-58571524f383.mp4) |
+| 3.2 Она слушает | std 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_19ee0a9a-1293-40bb-83b3-0fc34357caac.mp4) |
+| 3.3 Плюх! | std 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_295af33c-ca27-4372-9b5a-f31a5dab6467.mp4) |
+| 4.1 Зодчий | mini 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191035_7b1b0910-d5c9-41fd-83b3-b9ca32c4d812.mp4) |
+| 4.2 Принцесса | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191630_7e5943bd-e948-42ca-b8b7-12e6cd4be0cf.mp4) |
+| 4.3 Лотос | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191628_2ebff0c0-1581-4f37-9086-9cc328b0f5ba.mp4) |
+| 5.1 Гладиатор | mini 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191628_26e120b6-99b0-48bc-8cdc-7143cc6d28af.mp4) |
+| 5.2 Красный плащ | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191630_c506a86c-f160-49a6-9758-4252a99c2a2e.mp4) |
+| 5.3 Решётка | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191629_182301d2-ff61-4861-8691-36178c5c0c22.mp4) |
+| 6.1 Астроном | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191630_da70cfec-6948-437f-99b8-73b267174b6f.mp4) |
+| 6.2 Взгляды | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191630_5f3bb6cb-c113-4163-8555-9c084be290d1.mp4) |
+| 6.3 Лента улетает | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191629_198e7c40-7443-4b5e-a77e-52d2be8b7022.mp4) |
+| 7.1 Самурай | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191628_3ce21acb-d8cd-4ec0-96dc-5ed3104314d1.mp4) |
+| 7.2 Ниндзя | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191629_9c6fec6d-02cf-4a28-a20c-caaae17d45c4.mp4) |
+| 7.3 Под маской — она | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_f8c7f7b8-6904-4366-9ad2-0146eaf1efa3.mp4) |
+| 7.4 Дым | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191630_338ba10f-49fb-433a-a731-c5c568bc7e8d.mp4) |
+| 8.1 Посадка | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_28099cba-d7f9-4490-953f-7b0a3e7c52ca.mp4) |
+| 8.2 Верхняя палуба | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_51b1f048-b819-4dab-a775-792fba02eb79.mp4) |
+| 8.3 Роза | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194124_0cd061eb-6404-40a2-827c-0b897af09f0c.mp4) |
+| 8.4 Дверь первого класса | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194124_e0c2317d-c4c8-409a-942f-af58a6f8822e.mp4) |
+| 9.1 Эшелон | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_7fce3b1b-11a0-4c8a-8f77-33bd775b4606.mp4) |
+| 9.2 Она бежит | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_49477cf0-2ad5-4ef4-8155-40f41ecbef71.mp4) |
+| 9.3 Руки тянутся | mini 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195208_600b240e-8769-4d28-baf5-4bb68fdd001f.mp4) |
+| 9.4 Пальцы расходятся | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193036_3d76d3fd-20ca-4dcf-9a41-1fcf0d00c8cb.mp4) |
+| 10.1 Стена | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194124_a7d639fe-efd7-4170-a29b-b83afe9fa682.mp4) |
+| 10.2 Она на стене | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_0e675753-6d38-412f-95a9-e3f4f16f81e2.mp4) |
+| 10.3 Толпа и фейерверки | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_9c839575-baa9-440e-9b84-753898ba475a.mp4) |
+| 11.1 Ташкент на закате | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194124_6ef5829f-d664-4582-81f5-d268d8d95e81.mp4) |
+| 11.2 Два поезда | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195209_01ccbcc6-78a6-4ba5-ac08-0682e530486c.mp4) |
+| 11.3 Поезда расходятся | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194125_cc189c8f-6655-4878-8a6a-234e249d5f8c.mp4) |
+| 11.4 Переход аниме → реальность | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194123_a336e60a-7ffb-4ef5-892a-49b6cb9c2d8a.mp4) |
+| 12.1 Хожиакбар на уроке | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195209_904e54cd-9a63-4937-a0a3-db8272c5e99d.mp4) |
+| 12.2 Дилноза на уроке | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195208_0cd0847f-9745-4a6f-b7a1-9244171a2c04.mp4) |
+| 12.3 Учительская | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195710_db691111-00b0-4afe-8b26-97b45dc42f95.mp4) |
+| 12.4 Настольный теннис | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195209_431c1a08-0259-413e-bc2e-21004c0ddc79.mp4) |
+| 12.5 Баскетбол | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195707_3aa1b72c-0b9c-4e0b-ac80-742e5a1b88f4.mp4) |
+| 12.6 Вечерняя игра | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195707_6f67f798-8a42-4fc2-968d-b2d7e6bbcb0e.mp4) |
+| 12.7 Одна команда | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195708_01569282-a601-4bf2-9838-d2067d784624.mp4) |
+| 13.1 Руки и красная нить | mini 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195707_d33bc60f-79a4-401e-969c-8d88759363d4.mp4) |
 
 ## Картинки (стартовые кадры для клипов)
 
@@ -54,20 +91,20 @@
 | 8.4 Дверь первого класса | `d7b5b3b8-87fc-426a-83c9-f2ea65c95d67` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183442_d7b5b3b8-87fc-426a-83c9-f2ea65c95d67.png) |
 | 9.1 Эшелон | `0e017ebf-608f-4329-8eaf-8d17b6597665` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183440_0e017ebf-608f-4329-8eaf-8d17b6597665.png) |
 | 9.2 Она бежит | `a8fc63cb-b193-46b3-9654-3f7173102e25` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183439_a8fc63cb-b193-46b3-9654-3f7173102e25.png) |
-| 9.3 Руки тянутся | `64b6b613-049d-458a-8cc1-089e7973accb` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183544_64b6b613-049d-458a-8cc1-089e7973accb.png) |
+| 9.3 Руки тянутся | `b04dc400-06c7-4099-bbc9-d3f460e13a63` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194142_b04dc400-06c7-4099-bbc9-d3f460e13a63.png) |
 | 9.4 Пальцы расходятся | `ca7a0a2d-5b48-4554-8a53-23768bc75d8b` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183545_ca7a0a2d-5b48-4554-8a53-23768bc75d8b.png) |
 | 10.1 Стена | `a5a70523-6c76-481a-9d66-cb61b8196144` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183545_a5a70523-6c76-481a-9d66-cb61b8196144.png) |
 | 10.2 Она на стене | `6639e878-c7d2-4e9c-9674-4e1cf71476e3` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183636_6639e878-c7d2-4e9c-9674-4e1cf71476e3.png) |
 | 10.3 Толпа и фейерверки | `5ec02b48-0696-4256-b49e-684d01554bb6` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183546_5ec02b48-0696-4256-b49e-684d01554bb6.png) |
 | 11.1 Ташкент на закате | `ba3186bf-b34d-4e0d-a01a-68d9edbcbdbc` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183544_ba3186bf-b34d-4e0d-a01a-68d9edbcbdbc.png) |
-| 11.2 Два поезда | `6e0a6307-01cb-4710-84ba-2437ccadc624` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183544_6e0a6307-01cb-4710-84ba-2437ccadc624.png) |
+| 11.2 Два поезда | `7c393c6e-7d85-4402-9ff7-bddfb08ff640` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194139_7c393c6e-7d85-4402-9ff7-bddfb08ff640.png) |
 | 11.3 Поезда расходятся (аниме) | `65aac8dc-85e6-4b72-b9ff-cbfb9814c2e6` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183545_65aac8dc-85e6-4b72-b9ff-cbfb9814c2e6.png) |
 | 11.3 Поезда расходятся (фото, End frame) | `9b7f7048-969b-45a8-952d-1b14110931d5` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183546_9b7f7048-969b-45a8-952d-1b14110931d5.png) |
-| 12.1 Хожиакбар на уроке | `fa76ebf8-281d-4af4-ba67-0fa33d7cef24` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183637_fa76ebf8-281d-4af4-ba67-0fa33d7cef24.png) |
+| 12.1 Хожиакбар на уроке | `29978632-688e-4114-bd00-50cf2799dd1e` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194308_29978632-688e-4114-bd00-50cf2799dd1e.png) |
 | 12.2 Дилноза на уроке | `158c36d4-5923-4a0a-9f0f-7cbfc1e3fdb7` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183636_158c36d4-5923-4a0a-9f0f-7cbfc1e3fdb7.png) |
 | 12.3 Учительская | `28e4b9de-1d99-441f-896a-cc51b5cae94e` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183635_28e4b9de-1d99-441f-896a-cc51b5cae94e.png) |
 | 12.4 Настольный теннис | `615ac501-a2c3-42a8-9ead-cf0a3bd1f3bd` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183637_615ac501-a2c3-42a8-9ead-cf0a3bd1f3bd.png) |
-| 12.5 Баскетбол | `69bf867e-49ff-4706-be81-fcc845f107de` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183726_69bf867e-49ff-4706-be81-fcc845f107de.png) |
+| 12.5 Баскетбол | `9b68aee7-926a-4895-8b67-52f1a3b9e864` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194307_9b68aee7-926a-4895-8b67-52f1a3b9e864.png) |
 | 12.6 Вечерняя игра | `376293da-e7bb-4999-ac08-b6a9ae038eb9` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183634_376293da-e7bb-4999-ac08-b6a9ae038eb9.png) |
 | 12.7 Одна команда | `c4b02d34-b93c-4ce3-a28a-e4837c1b1442` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183635_c4b02d34-b93c-4ce3-a28a-e4837c1b1442.png) |
 | 13.1 Руки и красная нить | `99574478-d8ae-487d-afbc-df6f2b1d62ce` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183634_99574478-d8ae-487d-afbc-df6f2b1d62ce.png) |
