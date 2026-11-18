@@ -3,15 +3,22 @@
 Персонажи Higgsfield: Xojiakbar `a8a2fc55-222c-40f7-91ff-0f9e3e46e48b`, Dilnoza `a830463a-8d9c-44c1-9998-59fb4e70dbbb`.
 Референсы лиц (одобренные портреты): `489df9eb-129a-459c-9388-e1e665df8025` (он), `c876d20e-e5de-44dd-8fcc-5dbb039ead41` (она).
 
-## Клипы (Seedance 2.0, 720p std, 5 сек, без звука)
+## Клипы (Seedance 2.0, 720p std, без звука; 0.x–1.x по 5 сек)
 
 | Кадр | Статус | Ссылка |
 |---|---|---|
-| 0.1 Космос | в работе | job `ecfccf57-9741-44de-b66f-5f3567a98c6c` |
-| 0.2 Нить падает на Землю | в работе | job `a6170e61-dcbe-4888-a27c-921c83f6ed68` |
+| 0.1 Космос | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183141_ecfccf57-9741-44de-b66f-5f3567a98c6c.mp4) |
+| 0.2 Нить падает на Землю | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_a6170e61-dcbe-4888-a27c-921c83f6ed68.mp4) |
 | 1.1 Он видит её | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_102f083e-7ecc-4d5d-bccf-50362a237059.mp4) |
 | 1.2 Яблоко | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_566dbaeb-469b-49cd-adcb-f1c1380f6840.mp4) |
 | 1.3 Вихрь времени | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183140_48b94b40-d91b-4a6b-8b6f-064b567d53dc.mp4) |
+| 2.1 Герой каменного века (6 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_a054500b-c6fc-48ff-a305-019c0a149d0e.mp4) |
+| 2.2 Цветок (7 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_b2164d6c-294f-4175-aced-2128ff2913df.mp4) |
+| 2.3 Тираннозавр (8 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190519_b4b7b3ef-4644-42bc-a30a-5f5d6834e5f1.mp4) |
+| 3.1 Серенада (6 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_6321a04a-ea4b-4f3f-baf0-58571524f383.mp4) |
+| 3.2 Она слушает (6 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_19ee0a9a-1293-40bb-83b3-0fc34357caac.mp4) |
+| 3.3 Плюх! (7 с) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_190636_295af33c-ca27-4372-9b5a-f31a5dab6467.mp4) |
+| 4.1 Зодчий (7 с, тест Seedance 2.0 Mini) | готов | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_191035_7b1b0910-d5c9-41fd-83b3-b9ca32c4d812.mp4) |
 
 ## Картинки (стартовые кадры для клипов)
 
@@ -57,7 +64,7 @@
 | 11.3 Поезда расходятся (аниме) | `65aac8dc-85e6-4b72-b9ff-cbfb9814c2e6` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183545_65aac8dc-85e6-4b72-b9ff-cbfb9814c2e6.png) |
 | 11.3 Поезда расходятся (фото, End frame) | `9b7f7048-969b-45a8-952d-1b14110931d5` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183546_9b7f7048-969b-45a8-952d-1b14110931d5.png) |
 | 12.1 Хожиакбар на уроке | `fa76ebf8-281d-4af4-ba67-0fa33d7cef24` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183637_fa76ebf8-281d-4af4-ba67-0fa33d7cef24.png) |
-| 12.2 Дилноза на уроке | `158c36d4-5923-4a0a-9f0f-7cbfc1e3fdb7` | в очереди |
+| 12.2 Дилноза на уроке | `158c36d4-5923-4a0a-9f0f-7cbfc1e3fdb7` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183636_158c36d4-5923-4a0a-9f0f-7cbfc1e3fdb7.png) |
 | 12.3 Учительская | `28e4b9de-1d99-441f-896a-cc51b5cae94e` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183635_28e4b9de-1d99-441f-896a-cc51b5cae94e.png) |
 | 12.4 Настольный теннис | `615ac501-a2c3-42a8-9ead-cf0a3bd1f3bd` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183637_615ac501-a2c3-42a8-9ead-cf0a3bd1f3bd.png) |
 | 12.5 Баскетбол | `69bf867e-49ff-4706-be81-fcc845f107de` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183726_69bf867e-49ff-4706-be81-fcc845f107de.png) |
