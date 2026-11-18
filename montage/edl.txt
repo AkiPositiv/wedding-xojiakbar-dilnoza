@@ -71,7 +71,7 @@
 12_1_On_na_uroke    2  6
 12_2_Ona_na_uroke   2  6
 12_3_Uchitelskaya   1  5
-12_4_Tennis         2  6
+12_4_Tennis         -  -
 12_5_Basketbol      2  7
 12_6_Igra           1  5
 12_7_Komanda        1  5

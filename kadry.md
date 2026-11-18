@@ -39,7 +39,7 @@
 | 8.4 Дверь первого класса | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194124_e0c2317d-c4c8-409a-942f-af58a6f8822e.mp4) |
 | 9.1 Эшелон | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_7fce3b1b-11a0-4c8a-8f77-33bd775b4606.mp4) |
 | 9.2 Она бежит | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_49477cf0-2ad5-4ef4-8155-40f41ecbef71.mp4) |
-| 9.3 Руки тянутся | mini 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195208_600b240e-8769-4d28-baf5-4bb68fdd001f.mp4) |
+| 9.3 Руки тянутся | mini 7с (переделан: она отстаёт) | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_200246_57f674f1-6fad-41d7-8bd4-c68ccd6db433.mp4) |
 | 9.4 Пальцы расходятся | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193036_3d76d3fd-20ca-4dcf-9a41-1fcf0d00c8cb.mp4) |
 | 10.1 Стена | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194124_a7d639fe-efd7-4170-a29b-b83afe9fa682.mp4) |
 | 10.2 Она на стене | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_193037_0e675753-6d38-412f-95a9-e3f4f16f81e2.mp4) |
@@ -51,11 +51,11 @@
 | 12.1 Хожиакбар на уроке | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195209_904e54cd-9a63-4937-a0a3-db8272c5e99d.mp4) |
 | 12.2 Дилноза на уроке | mini 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195208_0cd0847f-9745-4a6f-b7a1-9244171a2c04.mp4) |
 | 12.3 Учительская | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195710_db691111-00b0-4afe-8b26-97b45dc42f95.mp4) |
-| 12.4 Настольный теннис | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195209_431c1a08-0259-413e-bc2e-21004c0ddc79.mp4) |
+| 12.4 Настольный теннис | fast 6с (переделан: парная игра 2×2) | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_200340_5c87a3a5-25e8-439f-b5a5-61d5c00a43a3.mp4) |
 | 12.5 Баскетбол | fast 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195707_3aa1b72c-0b9c-4e0b-ac80-742e5a1b88f4.mp4) |
 | 12.6 Вечерняя игра | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195707_6f67f798-8a42-4fc2-968d-b2d7e6bbcb0e.mp4) |
 | 12.7 Одна команда | fast 6с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195708_01569282-a601-4bf2-9838-d2067d784624.mp4) |
-| 13.1 Руки и красная нить | mini 7с | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_195707_d33bc60f-79a4-401e-969c-8d88759363d4.mp4) |
+| 13.1 Руки и красная нить | fast 7с (переделан: пальцы) | [mp4](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_200502_77599dfb-7eb4-4dcb-ac87-a3e0a89fcc9e.mp4) |
 
 ## Картинки (стартовые кадры для клипов)
 
@@ -91,7 +91,7 @@
 | 8.4 Дверь первого класса | `d7b5b3b8-87fc-426a-83c9-f2ea65c95d67` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183442_d7b5b3b8-87fc-426a-83c9-f2ea65c95d67.png) |
 | 9.1 Эшелон | `0e017ebf-608f-4329-8eaf-8d17b6597665` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183440_0e017ebf-608f-4329-8eaf-8d17b6597665.png) |
 | 9.2 Она бежит | `a8fc63cb-b193-46b3-9654-3f7173102e25` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183439_a8fc63cb-b193-46b3-9654-3f7173102e25.png) |
-| 9.3 Руки тянутся | `b04dc400-06c7-4099-bbc9-d3f460e13a63` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194142_b04dc400-06c7-4099-bbc9-d3f460e13a63.png) |
+| 9.3 Руки тянутся | `9587c4c8-cd48-44ba-9a44-f2dfb2862109` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_200137_9587c4c8-cd48-44ba-9a44-f2dfb2862109.png) |
 | 9.4 Пальцы расходятся | `ca7a0a2d-5b48-4554-8a53-23768bc75d8b` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183545_ca7a0a2d-5b48-4554-8a53-23768bc75d8b.png) |
 | 10.1 Стена | `a5a70523-6c76-481a-9d66-cb61b8196144` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183545_a5a70523-6c76-481a-9d66-cb61b8196144.png) |
 | 10.2 Она на стене | `6639e878-c7d2-4e9c-9674-4e1cf71476e3` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183636_6639e878-c7d2-4e9c-9674-4e1cf71476e3.png) |
@@ -103,8 +103,8 @@
 | 12.1 Хожиакбар на уроке | `29978632-688e-4114-bd00-50cf2799dd1e` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194308_29978632-688e-4114-bd00-50cf2799dd1e.png) |
 | 12.2 Дилноза на уроке | `158c36d4-5923-4a0a-9f0f-7cbfc1e3fdb7` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183636_158c36d4-5923-4a0a-9f0f-7cbfc1e3fdb7.png) |
 | 12.3 Учительская | `28e4b9de-1d99-441f-896a-cc51b5cae94e` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183635_28e4b9de-1d99-441f-896a-cc51b5cae94e.png) |
-| 12.4 Настольный теннис | `615ac501-a2c3-42a8-9ead-cf0a3bd1f3bd` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183637_615ac501-a2c3-42a8-9ead-cf0a3bd1f3bd.png) |
+| 12.4 Настольный теннис | `83a02a5c-ad4e-4b97-ae54-f04e3ff06bb2` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_200254_83a02a5c-ad4e-4b97-ae54-f04e3ff06bb2.png) |
 | 12.5 Баскетбол | `9b68aee7-926a-4895-8b67-52f1a3b9e864` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_194307_9b68aee7-926a-4895-8b67-52f1a3b9e864.png) |
 | 12.6 Вечерняя игра | `376293da-e7bb-4999-ac08-b6a9ae038eb9` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183634_376293da-e7bb-4999-ac08-b6a9ae038eb9.png) |
 | 12.7 Одна команда | `c4b02d34-b93c-4ce3-a28a-e4837c1b1442` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183635_c4b02d34-b93c-4ce3-a28a-e4837c1b1442.png) |
-| 13.1 Руки и красная нить | `99574478-d8ae-487d-afbc-df6f2b1d62ce` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_183634_99574478-d8ae-487d-afbc-df6f2b1d62ce.png) |
+| 13.1 Руки и красная нить | `ec964702-d708-46d4-b587-8049adf127d7` | [png](https://d8j0ntlcm91z4.cloudfront.net/user_3MHsN9DPZp0RrHPOLJq2twL6e3a/hf_20261118_200410_ec964702-d708-46d4-b587-8049adf127d7.png) |
