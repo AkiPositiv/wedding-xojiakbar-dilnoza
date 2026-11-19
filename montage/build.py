@@ -31,7 +31,7 @@ OUT_NAME = os.environ.get("OUT_NAME", "draft.mp4")
 
 W, H, FPS = 1920, 1080, 30
 XFADE = float(os.environ.get("XFADE", 0.7))  # затухание между всеми клипами, сек
-PHOTO_SEC = 1.5      # длительность одного фото в финале
+PHOTO_SEC = float(os.environ.get("PHOTO_SEC", 3.0))  # длительность одного фото в финале
 CHORUS_AT = 110.0    # припев «A Thousand Years» с 1:50 фильма
 CHORUS_LEN = 45.0    # до 2:35
 CHORUS_SRC = float(os.environ.get("CHORUS_SRC", 55))  # с какой секунды песни брать припев
@@ -75,12 +75,16 @@ def norm(src, dst, start=None, end=None):
 
 
 def photo_clip(src, dst):
+    """Фото → клип: размытый фон из самого фото + фото целиком по центру, медленное приближение."""
     frames = int(PHOTO_SEC * FPS)
-    vf = (f"scale={W*2}:{H*2}:force_original_aspect_ratio=decrease,"
-          f"pad={W*2}:{H*2}:(ow-iw)/2:(oh-ih)/2:color=black,"
-          f"zoompan=z='1+0.05*on/{frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+    W2, H2 = W * 2, H * 2
+    vf = (f"split[bg][fg];"
+          f"[bg]scale={W2}:{H2}:force_original_aspect_ratio=increase,crop={W2}:{H2},boxblur=40:3,eq=brightness=-0.08[b];"
+          f"[fg]scale={W2}:{H2}:force_original_aspect_ratio=decrease[f];"
+          f"[b][f]overlay=(W-w)/2:(H-h)/2,"
+          f"zoompan=z='1+0.06*on/{frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
           f":d={frames}:s={W}x{H}:fps={FPS},format=yuv420p,setsar=1")
-    run(["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", src, "-vf", vf,
+    run(["ffmpeg", "-y", "-v", "error", "-i", src, "-filter_complex", vf,
          "-frames:v", str(frames), "-c:v", "libx264", "-crf", "18", dst])
 
 
@@ -216,9 +220,9 @@ def main():
             dst = os.path.join(TMP, f"photo_{i:02d}.mp4")
             photo_clip(os.path.join(PHOTOS, p), dst)
             pc.append(dst)
-        pf = os.path.join(TMP, "era_photos.mp4")
-        concat(pc, pf)
-        era_files.append(pf)
+        for i, p in enumerate(pc):
+            era_files.append(p)
+            names.append(f"photo_{i:02d}")
 
     timeline, t = [], 0.0
     for name, path in zip(names, era_files):
