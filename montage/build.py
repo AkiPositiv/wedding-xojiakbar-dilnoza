@@ -13,6 +13,7 @@
 Результат: film/out/draft.mp4
 """
 import os
+import shutil
 import subprocess
 import sys
 
@@ -23,7 +24,10 @@ MUSIC = os.path.join(FILM, "music")
 PHOTOS = os.path.join(FILM, "photos")
 OUT = os.path.join(FILM, "out")
 TMP = os.path.join(OUT, "tmp")
-EDL = os.path.join(ROOT, "montage", "edl.txt")
+EDL = os.environ.get("EDL", os.path.join(ROOT, "montage", "edl.txt"))
+SFX = os.path.join(FILM, "sfx")
+SFX_SHIFTS = os.path.join(ROOT, "montage", "sfx_shift.txt")
+OUT_NAME = os.environ.get("OUT_NAME", "draft.mp4")
 
 W, H, FPS = 1920, 1080, 30
 XFADE = float(os.environ.get("XFADE", 0.7))  # затухание между всеми клипами, сек
@@ -33,6 +37,8 @@ CHORUS_LEN = 45.0    # до 2:35
 CHORUS_SRC = float(os.environ.get("CHORUS_SRC", 55))  # с какой секунды песни брать припев
 MAIN_SRC = float(os.environ.get("MAIN_SRC", 0))       # с какой секунды брать основной трек
 FADE = 5.0           # затухание музыки, сек
+MUSIC_VOL = float(os.environ.get("MUSIC_VOL", 0.7))  # громкость песни, когда есть звуки сцен
+SFX_VOL = float(os.environ.get("SFX_VOL", 0.45))     # громкость звуков сцен
 
 
 def run(cmd):
@@ -50,6 +56,10 @@ def duration(path):
 
 def norm(src, dst, start=None, end=None):
     """Привести клип к 1920x1080, 30fps, без звука, с обрезкой."""
+    stamp = dst + ".src"
+    key = f"{os.path.getmtime(src)} {start} {end}"
+    if os.path.exists(dst) and os.path.exists(stamp) and open(stamp).read() == key:
+        return
     cmd = ["ffmpeg", "-y", "-v", "error"]
     if start is not None:
         cmd += ["-ss", str(start)]
@@ -60,6 +70,8 @@ def norm(src, dst, start=None, end=None):
                    f"pad={W}:{H}:(ow-iw)/2:(oh-ih)/2,fps={FPS},format=yuv420p,setsar=1",
             "-c:v", "libx264", "-preset", "medium", "-crf", "18", dst]
     run(cmd)
+    with open(stamp, "w") as f:
+        f.write(key)
 
 
 def photo_clip(src, dst):
@@ -84,7 +96,7 @@ def concat(files, dst):
 def xfade_chain(parts, dst):
     """Склеить части с растворением между ними."""
     if len(parts) == 1:
-        os.replace(parts[0], dst)
+        shutil.copy(parts[0], dst)
         return
     cmd = ["ffmpeg", "-y", "-v", "error"]
     for p in parts:
@@ -117,35 +129,74 @@ def read_edl():
     return eras
 
 
-def add_music(video, dst):
+def read_shifts():
+    """montage/sfx_shift.txt: «имя  сдвиг_сек». >0 — звук позже, <0 — пропустить начало звука."""
+    shifts = {}
+    if os.path.exists(SFX_SHIFTS):
+        for raw in open(SFX_SHIFTS, encoding="utf-8"):
+            line = raw.split("#", 1)[0].split()
+            if len(line) >= 2:
+                shifts[line[0]] = float(line[1])
+    return shifts
+
+
+def add_music(video, dst, timeline):
+    """timeline: [(имя, начало_в_фильме, длительность_клипа)] — для звуков сцен."""
     main = os.path.join(MUSIC, "main.mp3")
     chorus = os.path.join(MUSIC, "chorus.mp3")
-    if not os.path.exists(main):
+    total = duration(video)
+    shifts = read_shifts()
+    sfx = [(n, st, d, os.path.join(SFX, n + ".mp3")) for n, st, d in timeline
+           if os.path.exists(os.path.join(SFX, n + ".mp3"))]
+    if not os.path.exists(main) and not sfx:
         os.replace(video, dst)
         print("Музыки нет (film/music/main.mp3) — собрано без звука.")
         return
-    total = duration(video)
-    inputs = ["-i", video, "-i", main]
-    a_main = (f"[1:a]atrim={MAIN_SRC}:{MAIN_SRC + total},asetpts=PTS-STARTPTS,apad,atrim=0:{total},afade=t=in:d=2,"
-              f"afade=t=out:st={max(total - FADE, 0):.2f}:d={FADE}")
-    if os.path.exists(chorus) and total > CHORUS_AT + 5:
-        inputs += ["-i", chorus]
-        clen = min(CHORUS_LEN, total - CHORUS_AT)
-        # основной трек приглушаем на время припева
-        a_main += (f",volume='if(between(t,{CHORUS_AT},{CHORUS_AT + clen}),0.25,1)':eval=frame[m];"
-                   f"[2:a]atrim={CHORUS_SRC}:{CHORUS_SRC + clen},asetpts=PTS-STARTPTS,afade=t=in:d={FADE},"
-                   f"afade=t=out:st={clen - FADE:.2f}:d={FADE},adelay={int(CHORUS_AT * 1000)}:all=1[c];"
-                   f"[m][c]amix=inputs=2:duration=first:normalize=0[a]")
+    inputs, parts, labels = ["-i", video], [], []
+    if os.path.exists(main):
+        inputs += ["-i", main]
+        mvol = MUSIC_VOL if sfx else 1.0
+        a_main = (f"[1:a]atrim={MAIN_SRC}:{MAIN_SRC + total},asetpts=PTS-STARTPTS,apad,atrim=0:{total},afade=t=in:d=2,"
+                  f"afade=t=out:st={max(total - FADE, 0):.2f}:d={FADE},volume={mvol}")
+        if os.path.exists(chorus) and total > CHORUS_AT + 5:
+            inputs += ["-i", chorus]
+            clen = min(CHORUS_LEN, total - CHORUS_AT)
+            a_main += (f",volume='if(between(t,{CHORUS_AT},{CHORUS_AT + clen}),0.25,1)':eval=frame[m0];"
+                       f"[2:a]atrim={CHORUS_SRC}:{CHORUS_SRC + clen},asetpts=PTS-STARTPTS,afade=t=in:d={FADE},"
+                       f"afade=t=out:st={clen - FADE:.2f}:d={FADE},adelay={int(CHORUS_AT * 1000)}:all=1[c];"
+                       f"[m0][c]amix=inputs=2:duration=first:normalize=0[m]")
+        else:
+            a_main += "[m]"
+        parts.append(a_main)
+        labels.append("[m]")
     else:
-        a_main += "[a]"
-    run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", a_main,
+        parts.append(f"anullsrc=r=44100:cl=stereo,atrim=0:{total}[m]")
+        labels.append("[m]")
+    base = len(inputs) // 2
+    for k, (name, st, d, path) in enumerate(sfx):
+        inputs += ["-i", path]
+        idx = base + k
+        sh = shifts.get(name, 0.0)
+        chain = f"[{idx}:a]aformat=sample_rates=44100:channel_layouts=stereo,"
+        if sh < 0:
+            chain += f"atrim=start={-sh},asetpts=PTS-STARTPTS,"
+        elif sh > 0:
+            chain += f"adelay={int(sh * 1000)}:all=1,"
+        chain += (f"atrim=0:{d:.3f},afade=t=in:d=0.3,afade=t=out:st={max(d - 0.5, 0):.3f}:d=0.5,"
+                  f"volume={SFX_VOL},adelay={int(st * 1000)}:all=1[s{k}]")
+        parts.append(chain)
+        labels.append(f"[s{k}]")
+    parts.append("".join(labels) + f"amix=inputs={len(labels)}:duration=first:normalize=0,alimiter=limit=0.95[a]")
+    run(["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", ";".join(parts),
          "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k",
          "-t", f"{total:.3f}", dst])
+    if sfx:
+        print(f"Звуки сцен: {len(sfx)} из {len(timeline)}")
 
 
 def main():
     os.makedirs(TMP, exist_ok=True)
-    era_files, missing = [], []  # era_files: все клипы подряд, затухание между каждым
+    era_files, missing, names = [], [], []  # все клипы подряд, затухание между каждым
     for idx, (era, items) in enumerate(read_edl()):
         for name, start, end in items:
             src = os.path.join(CLIPS, name + ".mp4")
@@ -155,6 +206,7 @@ def main():
             dst = os.path.join(TMP, name + ".mp4")
             norm(src, dst, start, end)
             era_files.append(dst)
+            names.append(name)
 
     photos = sorted(p for p in os.listdir(PHOTOS)
                     if p.lower().endswith((".jpg", ".jpeg", ".png", ".webp"))) if os.path.isdir(PHOTOS) else []
@@ -168,10 +220,15 @@ def main():
         concat(pc, pf)
         era_files.append(pf)
 
+    timeline, t = [], 0.0
+    for name, path in zip(names, era_files):
+        d = duration(path)
+        timeline.append((name, t, d))
+        t += d - XFADE
     silent = os.path.join(TMP, "silent.mp4")
-    xfade_chain(era_files, silent)
-    final = os.path.join(OUT, "draft.mp4")
-    add_music(silent, final)
+    xfade_chain(list(era_files), silent)
+    final = os.path.join(OUT, OUT_NAME)
+    add_music(silent, final, timeline)
     print(f"Готово: {final}  ({duration(final):.1f} с)")
     if missing:
         print("Пропущены (ещё нет клипов):", ", ".join(missing))
